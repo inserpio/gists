@@ -22,6 +22,7 @@ CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van 
 
 Since I’ll access _ARTIST_ nodes through its last_name property, I decided to introduce an unique index constraint:
 
+//setup
 [source,cypher]
 ----
 CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE
@@ -29,12 +30,14 @@ CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE
 
 Now, I’ll focus on _CITIES_ and _STAGES_. First of all, where he was born and where he died:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})
 CREATE (a)-[:BORN_IN]->(c:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667})
 ----
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})
@@ -47,6 +50,7 @@ Please also note that I’m saving latitude and longitude informations for futur
 
 Vincent Van Gogh adhered to the *‘Post-Impressionism’* art movement (more correctly, one of its founder):
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})
@@ -55,25 +59,27 @@ CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia
 
 Now I could write the first, very simple Cypher statement to look at nodes and relations I’ve just created:
 
+//setup
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, art_movement, city
 ----
 
-//console
-
 We can see a graph already emerging! :)
+
 
 == III. JOURNEY’S STAGES
 
 On December 1883, Van Gogh began his journey by moving to *Neuen*, North Brabant, Netherlands. He lived there until November 1885:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:MOVED_TO]->(s:STAGE {from: 188312, to: 188511})
 ----
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -87,6 +93,7 @@ _I’m still a little bit undecided about creating a specific node labeled STAGE
 
 In december 1885, Van Gogh moved to *Antwerp*, Belgium, where he lived until February 1886:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -94,6 +101,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188512, to: 188602})
 ----
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -103,6 +111,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Antwerp', region: 'Flemish Region', c
 
 Van Gogh lived in *Paris*, France from March 1886 to February 1888:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -110,6 +119,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188603, to: 188802 })
 ----
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -119,6 +129,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Paris', region: 'Île-de-France', cou
 
 Van Gogh moved to *Arles*, France in February 1888 and stayed there until May 1889:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -126,6 +137,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188802, to: 188905 })
 ----
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -137,13 +149,15 @@ _(Please, pay attention to the back slash in d\’Azur)._
 
 Then he moved to *Saint-Rémy de Provence*, France in May 1889 and stayed there until May 1890:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188905, to: 189005 })
----
+----
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -153,6 +167,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence', region: 'Pr
 
 Van Gogh ended his trip, and also his life by committing suicide, in *Auvers-sur-Oise*, France where he had lived from May to July 1890:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -162,6 +177,7 @@ CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 189005, to: 189007 })
 
 Auvers-sur-Oise was already created, so I’m going to change a little the usual statement:
 
+//setup
 [source,cypher]
 ----
 MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
@@ -172,6 +188,7 @@ CREATE (last_stage)-[:IN]->(c)
 
 Now I’m able to inquiry the system to visualize Van Gogh’s journey:
 
+//setup
 [source,cypher]
 ----
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
@@ -180,7 +197,7 @@ MATCH (artist)-[:BELONGS_TO]->(art_movement:ART_MOVEMENT)
 RETURN artist, art_movement, stage, city
 ----
 
-
+//console
 
 
 
