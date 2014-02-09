@@ -4,7 +4,7 @@
 
 Vincent Van Gogh is widely considered one of the most important neo-impressionist painters.
 
-One fundamental aspect of his artwork was his continuous research for colours: “_Italic_during his early adulthood, while living between The Netherlands and Belgium, his palette consisted mainly of somber earth tones and showed no sign of the vivid coloration that distinguished his later work. In March 1886, he moved to Paris and discovered the French Impressionists. Later, he moved to the south of France and was influenced by the strong sunlight he found there. His work grew brighter in color, and he developed the unique and highly recognizable style that became fully realized during his stay in Arles in 1888_Italic_”
+One fundamental aspect of his artwork was his continuous research for colours: “_during his early adulthood, while living between The Netherlands and Belgium, his palette consisted mainly of somber earth tones and showed no sign of the vivid coloration that distinguished his later work. In March 1886, he moved to Paris and discovered the French Impressionists. Later, he moved to the south of France and was influenced by the strong sunlight he found there. His work grew brighter in color, and he developed the unique and highly recognizable style that became fully realized during his stay in Arles in 1888_”
 
 So how would I go about putting Van Gogh’s journey into Neo4j?
 
@@ -22,7 +22,7 @@ The root node is of course Vincent Van Gogh himself:
 CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
 ----
 
-Since I’ll access _Italic_ARTIST_Italic_ nodes through its last_name property, I decided to introduce an unique index constraint:
+Since I’ll access _ARTIST_ nodes through its last_name property, I decided to introduce an unique index constraint:
 
 //hide
 //setup
@@ -32,7 +32,7 @@ Since I’ll access _Italic_ARTIST_Italic_ nodes through its last_name property,
 CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE
 ----
 
-Now, I’ll focus on _Italic_CITIES_Italic_ and _Italic_STAGES_Italic_. First of all, where he was born and where he died:
+Now, I’ll focus on _CITIES_ and _STAGES_. First of all, where he was born and where he died:
 
 //hide
 //setup
@@ -43,11 +43,11 @@ MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:BORN_IN]->(c:CITY {name: '
 MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:DIED_IN]->(c:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175})
 ----
 
-Please note, we have a _Italic_CITY_Italic_ with a province property and the other with a region property: Neo4j is *Bold*schema-less*Bold* (or, more correctly, “less schema”, as Jim Webber pointed out on his http://jimwebber.org/2014/01/starting-graph-databases-with-neo4j-2-0/[blog]).
+Please note, we have a _CITY_ with a province property and the other with a region property: Neo4j is *schema-less* (or, more correctly, *“less schema”*, as Jim Webber pointed out on his http://jimwebber.org/2014/01/starting-graph-databases-with-neo4j-2-0/[blog]).
 
 Please also note that I’m saving latitude and longitude informations for future (maybe my next spike) geo-spatial queries: at present, I’m just supposing this is the correct way to store such kind of data.
 
-Vincent Van Gogh adhered to the ‘Post-Impressionism’ art movement (more correctly, one of its founder):
+Vincent Van Gogh adhered to the *‘Post-Impressionism’* art movement (more correctly, one of its founder):
 
 //hide
 //setup
