@@ -902,7 +902,7 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 MATCH (p:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 OPTIONAL MATCH (p)-[r:LIKES|POSTED]->(something_he_or_she_likes)
-RETURN p.first_name + ' ' + p.last_name as person, city.name, city.country, type(r) as likes_or_posted, likes_or_posted.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
+RETURN p.first_name + ' ' + p.last_name as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
 ORDER BY city.name, p.last_name
 ----
 
