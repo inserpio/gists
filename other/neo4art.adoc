@@ -363,7 +363,7 @@ CREATE (a)-[:BELONGS_TO]->(m)
 
 In Arles, Van Gogh was introduced to Eugène Boch, a Belgian painter who stayed at times in Fontvieille, and the two exchanged visits for some times.
 
-*Eugène Boch*:
+http://en.wikipedia.org/wiki/Eug%C3%A8ne_Boch[*Eugène Boch*]:
 
 [source,cypher]
 ----
@@ -400,7 +400,7 @@ Van Gogh's artwork is about painting:
 CREATE (v:VISUAL_ART {name: 'painting', wikipedia: 'http://en.wikipedia.org/wiki/Visual_arts#Painting'})
 ----
 
-In Neuen, Van Gogh "_completed what is generally considered his first major work, http://en.wikipedia.org/wiki/The_Potato_Eaters[*The Potato Eaters*], the culmination of several years work painting peasant character studies_":
+In Neuen, Van Gogh "_completed what is generally considered his first major work, _http://en.wikipedia.org/wiki/The_Potato_Eaters[*The Potato Eaters*]_, the culmination of several years work painting peasant character studies_":
 
 [source,cypher]
 ----
