@@ -400,7 +400,7 @@ Van Gogh's artwork is about painting:
 CREATE (v:VISUAL_ART {name: 'painting', wikipedia: 'http://en.wikipedia.org/wiki/Visual_arts#Painting'})
 ----
 
-In Neuen, Van Gogh "_completed what is generally considered his first major work, _http://en.wikipedia.org/wiki/The_Potato_Eaters[*The Potato Eaters*]_, the culmination of several years work painting peasant character studies_":
+In Neuen, Van Gogh "_completed what is generally considered his first major work,_ http://en.wikipedia.org/wiki/The_Potato_Eaters[*The Potato Eaters*]_, the culmination of several years work painting peasant character studies_":
 
 [source,cypher]
 ----
