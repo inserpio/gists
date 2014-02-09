@@ -82,7 +82,7 @@ CREATE (gaugin)-[:BELONGS_TO]->(post_impressionism)
 
 CREATE (bernard:ARTIST {first_name: 'Émile', second_name: 'Henri', last_name: 'Bernard', born: 18680428, died: 19410416})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(bernard)
-CREATE (bernard)-[:BELONGS_TO]->(post-impressionism)
+CREATE (bernard)-[:BELONGS_TO]->(post_impressionism)
 
 CREATE (pissarro:ARTIST {first_name: 'Camille', last_name: 'Pissarro', born: 18300710, died: 19031113})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(pissarro)
