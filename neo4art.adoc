@@ -713,7 +713,7 @@ ORDER BY stage.from, artwork.jh_order
 
 //table
 
-=== Neo4Art - Picture 4. Van Gogh’s artworks
+*Neo4Art - Picture 4. Van Gogh’s artworks*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
 
@@ -821,7 +821,7 @@ ORDER BY city.country, city.name, museum.name, artwork.title
 
 //table
 
-=== Neo4Art - Picture 5. museums hosting Van Gogh’s artworks
+*Neo4Art - Picture 5. museums hosting Van Gogh’s artworks*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 
@@ -910,7 +910,7 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 OPTIONAL MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
-RETURN person.firs_name, person.last_name, city.name, city.country, type(likes_or_posted), likes_or_posted.url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
+RETURN person.first_name, person.last_name, city.name, city.country, type(likes_or_posted), likes_or_posted.url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
 ORDER BY city.name, person.last_name
 ----
 
