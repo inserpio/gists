@@ -56,7 +56,7 @@ MATCH (a:ARTIST {last_name: 'Van Gogh'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
 ----
 
-Now I could write the first, very simple Cypher statement to look at nodes and relations I've just created:
+Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html[*Cypher*] statement to look at nodes and relations I've just created:
 
 [source,cypher]
 ----
