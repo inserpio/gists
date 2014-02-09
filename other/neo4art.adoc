@@ -633,10 +633,13 @@ CREATE (m:MUSEUM {name: 'Kröller-Müller Museum', director: 'Lisette Pelsers', 
 [source,cypher]
 ----
 CREATE (c:CITY {name: 'Otterlo', province: 'Gelderland', country: 'Netherlands', longitude: 52.1, latitude: 5.783333})
+----
+
+[source,cypher]
+----
 MATCH (m:MUSEUM {name: 'Kröller-Müller Museum'}), (c:CITY {name: 'Otterlo'})
 CREATE (m)-[:LOCATED_IN]->(c)
 ----
-
 
 [source,cypher]
 ----
