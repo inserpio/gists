@@ -198,6 +198,7 @@ CREATE (destroyed_by_fire_n_1967:STATUS {name: 'Destroyed', how: 'By fire', when
 
 //console
 
+//graph
 
 
 == I. Preface 
@@ -258,6 +259,10 @@ Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, art_movement, city
 ----
+
+//table
+
+//graph
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
 
