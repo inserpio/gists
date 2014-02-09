@@ -86,7 +86,7 @@ CREATE (bernard)-[:BELONGS_TO]->(post_impressionism)
 
 CREATE (pissarro:ARTIST {first_name: 'Camille', last_name: 'Pissarro', born: 18300710, died: 19031113})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(pissarro)
-CREATE (pissarro)-[:BELONGS_TO]->(post-impressionism)
+CREATE (pissarro)-[:BELONGS_TO]->(post_impressionism)
 CREATE (pissarro)-[:BELONGS_TO]->(impressionism)
 
 CREATE (seurat:ARTIST {first_name: 'Georges-Pierre', last_name: 'Seurat', born: 18591202, died: 18910329})
