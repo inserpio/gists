@@ -20,11 +20,11 @@ CREATE (neuen:CITY {name: 'Neuen', province: 'North Brabant', country: 'Netherla
 CREATE (antwerp:CITY {name: 'Antwerp', province: 'Antwerp', country: 'Belgium', longitude: 51.216667, latitude: 4.4})
 CREATE (paris:CITY {name: 'Paris', country: 'France', longitude: 48.8567, latitude: 2.3508})
 CREATE (arles:CITY {name: 'Arles', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.6767, longitude: 4.6278})
-CREATE (saint_rémy_de_provence:CITY {name: 'Saint-Rémy-de-Provence', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.79, longitude: 4.8325})
+CREATE (saint_remy_de_provence:CITY {name: 'Saint-Rémy-de-Provence', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.79, longitude: 4.8325})
 CREATE (siegen:CITY {name: 'Siegen', region: 'Arnsberg', state:'North Rhine-Westphalia', country: 'Germany', latitude: 50.883333, longitude: 8.016667});
 CREATE (painting:VISUAL_ART {name: 'painting', wikipedia: 'http://en.wikipedia.org/wiki/Visual_arts#Painting'})
 CREATE (albi:CITY {name: 'Albi', country: 'France', latitude: 50.883333, longitude: 8.016667})
-CREATE (château_malromé:CITY {name: 'Château Malromé', country: 'France', latitude: 50.883333, longitude: 8.016667})
+CREATE (chateau_malrome:CITY {name: 'Château Malromé', country: 'France', latitude: 50.883333, longitude: 8.016667})
 
 
 CREATE (post_impressionism:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
@@ -54,10 +54,10 @@ CREATE (paris_stage)-[:IN]->(paris)
 CREATE (paris_stage)-[:MOVED_TO]->(arles_stage:STAGE {from: 188802, to: 188905 })
 CREATE (arles_stage)-[:IN]->(arles)
 
-CREATE (arles_stage)-[:MOVED_TO]->(saint_rémy_de_provence_stage:STAGE {from: 188905, to: 189005 })
-CREATE (saint_rémy_de_provence_stage)-[:IN]->(saint_rémy_de_provence)
+CREATE (arles_stage)-[:MOVED_TO]->(saint_remy_de_provence_stage:STAGE {from: 188905, to: 189005 })
+CREATE (saint_remy_de_provence_stage)-[:IN]->(saint_remy_de_provence)
 
-CREATE (saint_rémy_de_provence_stage)-[:MOVED_TO]->(auvers_sur_oise_stage:STAGE {from: 189005, to: 189007 })
+CREATE (saint_remy_de_provence_stage)-[:MOVED_TO]->(auvers_sur_oise_stage:STAGE {from: 189005, to: 189007 })
 CREATE (auvers_sur_oise_stage)-[:IN]->(auvers_sur_oise)
 
 //
@@ -73,7 +73,7 @@ CREATE (antwerp_stage)-[:WHERE_WAS_INFLUENCED_BY]->(rubens)
 
 CREATE (toulouse_lautrec:ARTIST {first_name: 'Henri', second_name: 'Marie', third_name: 'Raymond', last_name: 'Toulouse-Lautrec', born: 18641124, died: 19010909})
 CREATE (toulouse_lautrec)-[:BORN_IN]->(albi)
-CREATE (toulouse_lautrec)-[:DIED_IN]->(château_malromé)
+CREATE (toulouse_lautrec)-[:DIED_IN]->(chateau_malrome)
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(toulouse_lautrec)
 CREATE (toulouse_lautrec)-[:BELONGS_TO]->(post_impressionism)
 CREATE (toulouse_lautrec)-[:BELONGS_TO]->(art_nouveau)
