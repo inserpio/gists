@@ -16,22 +16,25 @@ The root node is of course Vincent Van Gogh himself:
 
 [source,cypher]
 ----
-CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
+CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729});
 ----
 
 Since I’ll access _ARTIST_ nodes through its last_name property, I decided to introduce an unique index constraint:
 
 [source,cypher]
 ----
-CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE
+CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE;
 ----
 
 Now, I’ll focus on _CITIES_ and _STAGES_. First of all, where he was born and where he died:
 
 [source,cypher]
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:BORN_IN]->(c:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667})
-MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:DIED_IN]->(c:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175})
+MATCH (a:ARTIST {last_name: 'Van Gogh'})
+CREATE (a)-[:BORN_IN]->(c:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667});
+
+MATCH (a:ARTIST {last_name: 'Van Gogh'})
+CREATE (a)-[:DIED_IN]->(c:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175});
 ----
 
 Please note, we have a _CITY_ with a province property and the other with a region property: Neo4j is *schema-less* (or, more correctly, *“less schema”*, as Jim Webber pointed out on his http://jimwebber.org/2014/01/starting-graph-databases-with-neo4j-2-0/[blog]).
@@ -42,7 +45,8 @@ Vincent Van Gogh adhered to the *‘Post-Impressionism’* art movement (more co
 
 [source,cypher]
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
+MATCH (a:ARTIST {last_name: 'Van Gogh'})
+CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'});
 ----
 
 Now I could write the first, very simple Cypher statement to look at nodes and relations I’ve just created:
@@ -50,7 +54,7 @@ Now I could write the first, very simple Cypher statement to look at nodes and r
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
-RETURN artist, art_movement, city
+RETURN artist, art_movement, city;
 ----
 
 //console
