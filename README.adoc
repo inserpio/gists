@@ -1,4 +1,5 @@
 == Neo4Art: Van Gogh's Journey in a Neo4j Graph Database
 
+This repo contains content for use at http://gist.neo4j.org/.
 
 GraphGist version of my very first spike on Neo4j, as posted at http://inserpio.wordpress.com/information-technology/neo4art-van-goghs-journey/
