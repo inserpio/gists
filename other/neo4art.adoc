@@ -200,7 +200,7 @@ In describing his journey, there's another fundamental aspect about Van Gogh's a
 "_During his 2nd stage in Antwerp he applied himself to the study of colour theory and spent time in museums, particularly studying the work of Peter Paul Rubens,
 gaining encouragement to broaden his palette to carmine, cobalt and emerald green_"
 
-*Peter Paul Rubens*:
+http://en.wikipedia.org/wiki/Peter_Paul_Rubens[*Peter Paul Rubens*]:
 
 [source,cypher]
 ----
@@ -223,7 +223,7 @@ CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 
 "_Vincent encountered many of the giants of Impressionism during his time in Paris: Henri de Toulouse-Lautrec, Emile Bernard, Camille Pissarro, Georges Seurat and, of course, Paul Gauguin. While Vincent didn't fully accept many of the theories put forth by the Impressionists (on many occasions he would passionately argue with his contemporaries late into the night in the cafes of Montmartre), he nevertheless adapted some of their techniques in a manner that would further define his own unique style. In Paris, Van Gogh's palette came alive_"
 
-*Henri de Toulouse-Lautrec*:
+http://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec[*Henri de Toulouse-Lautrec*]:
 
 [source,cypher]
 ----
@@ -248,7 +248,7 @@ MATCH (a:ARTIST {last_name: 'Toulouse-Lautrec'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Art Nouveau', wikipedia: 'http://en.wikipedia.org/wiki/Art_Nouveau'})
 ----
 
-*Paul Gauguin*:
+http://en.wikipedia.org/wiki/Paul_Gauguin[*Paul Gauguin*]:
 
 [source,cypher]
 ----
@@ -267,7 +267,7 @@ MATCH (a:ARTIST {last_name: 'Gauguin'}), (m:ART_MOVEMENT {name: 'Post-Impression
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
-*Émile Bernard*:
+http://en.wikipedia.org/wiki/%C3%89mile_Bernard[*Émile Bernard*]:
 
 [source,cypher]
 ----
@@ -286,7 +286,7 @@ MATCH (a:ARTIST {last_name: 'Bernard'}), (m:ART_MOVEMENT {name: 'Post-Impression
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
-*Camille Pissarro*:
+http://en.wikipedia.org/wiki/Camille_Pissarro[*Camille Pissarro*]:
 
 [source,cypher]
 ----
@@ -311,7 +311,7 @@ MATCH (a:ARTIST {last_name: 'Pissarro'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Impressionism'})
 ----
 
-*Georges Seurat*:
+http://en.wikipedia.org/wiki/Georges_Seurat[*Georges Seurat*]:
 
 [source,cypher]
 ----
@@ -342,7 +342,7 @@ MATCH (a:ARTIST {last_name: 'Seurat'}), (m:ART_MOVEMENT {name: 'Post-Impressioni
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
-*Claude Monet*:
+http://en.wikipedia.org/wiki/Claude_Monet[*Claude Monet*]:
 
 [source,cypher]
 ----
