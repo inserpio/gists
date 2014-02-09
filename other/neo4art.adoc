@@ -23,7 +23,6 @@ First, I started with the data source: The http://www.vggallery.com/[*Vincent Va
 
 The root node is of course Vincent Van Gogh himself:
 
-//setup
 [source,cypher]
 ----
 CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
@@ -35,8 +34,11 @@ CREATE (a)-[:BORN_IN]->(c:CITY {name: 'Zundert', province: 'North Brabant', coun
 
 MATCH (a:ARTIST {last_name: 'Van Gogh'})
 CREATE (a)-[:DIED_IN]->(c:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175})
+
+RETURN *
 ----
 
 //graph
 
 //console
+
