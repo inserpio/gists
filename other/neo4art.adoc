@@ -450,7 +450,7 @@ MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
-"_During his stay in *Paris*, he collected more Japanese ukiyo-e woodblock prints; he became interested in such works, when in 1885 in Antwerp he used them to decorate the walls of his studio. He collected hundreds of prints, which are visible in the backgrounds of several of his paintings. In his 1887_ http://en.wikipedia.org/wiki/File%3AVan_Gogh_-_Portrait_of_Pere_Tanguy_1887-8.JPG[*Portrait of Père Tanguy*] _several can be seen hanging on the wall behind the main figure_":
+"_During his stay in *Paris*, he collected more Japanese ukiyo-e woodblock prints; he became interested in such works, when in 1885 in Antwerp he used them to decorate the walls of his studio. He collected hundreds of prints, which are visible in the backgrounds of several of his paintings. In his 1887_ (http://en.wikipedia.org/wiki/File%3AVan_Gogh_-_Portrait_of_Pere_Tanguy_1887-8.JPG)[*Portrait of Père Tanguy*] _several can be seen hanging on the wall behind the main figure_":
 
 [source,cypher]
 ----
