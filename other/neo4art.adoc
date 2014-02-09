@@ -8,6 +8,10 @@ One fundamental aspect of his artwork was his continuous research for colours: �
 
 So how would I go about putting Van Gogh’s journey into Neo4j?
 
+
+
+
+
 == II. Introduction
 
 First, I started with the data source: The http://www.vggallery.com/[Vincent Van Gogh Gallery] has a complete list of his paintings.
@@ -63,6 +67,9 @@ RETURN artist, art_movement, city
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
 
 We can see a graph already emerging! :)
+
+
+
 
 
 == III. JOURNEY’S STAGES
@@ -182,6 +189,10 @@ RETURN artist, art_movement, stage, city
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-002.png[]
 
+
+
+
+
 == IV. INFLUENCERS
 
 In describing his journey, there’s another fundamental aspect about Van Gogh’s artwork: his influencers.
@@ -200,7 +211,7 @@ CREATE (a:ARTIST {first_name: 'Peter', second_name: 'Paul', last_name: 'Rubens',
 ----
 MATCH (a:ARTIST {last_name: 'Rubens'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Baroque', wikipedia: 'http://en.wikipedia.org/wiki/Baroque'})
------
+----
 
 [source,cypher]
 ----
@@ -374,6 +385,12 @@ OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONG
 RETURN artist, stage, city, influencer, art_movement
 ----
 
+image::http://inserpio.files.wordpress.com/2014/02/neo4art-003.png[]
+
+
+
+
+
 == V. ARTWORK
 
 Van Gogh’s artwork is about painting:
@@ -543,6 +560,10 @@ MATCH (stage)-[:IN]->(city:CITY)
 RETURN artist, stage, city, artwork, visual_art
 ----
 
+image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
+
+
+
 == VI. WHERE’RE HIS ARTWORKS?
 
 Ok, I believe it’s time to get up from my chair to start admiring his paintings around the world.
@@ -656,6 +677,10 @@ MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(ci
 RETURN artwork, museum, city
 ----
 
+image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
+
+
+
 == VII. ADD SOME SOCIAL
 
 Of course in an age of social networking, we couldn’t finish this spike without some forms of I LIKE:
@@ -757,3 +782,5 @@ WITH person, city
 MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
 RETURN person, city, likes_or_posted, something_he_or_she_likes
 ----
+
+image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
