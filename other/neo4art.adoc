@@ -47,6 +47,8 @@ MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEME
 
 Now I could write the first, very simple Cypher statement to look at nodes and relations I’ve just created:
 
+//setup
+//output
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
