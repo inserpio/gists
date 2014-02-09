@@ -787,3 +787,21 @@ RETURN person, city, likes_or_posted, something_he_or_she_likes
 ----
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
+
+
+
+//hide
+//setup
+[source,cypher]
+----
+CREATE (c:CITY {name: 'London', county: 'Greater London', country: 'United Kingdom', longitude: 51.507222, latitude: -0.1275});
+CREATE (c:CITY {name: 'Los Angeles', county: 'Los Angeles', state: 'California', country: 'United States of America', longitude: 34.05, latitude: -118.25});
+CREATE (c:CITY {name: 'Lyon', country: 'France', longitude: 45.76, latitude: 4.84});
+CREATE (c:CITY {name: 'Madrid', country: 'Spain', longitude: 40.4, latitude: -3.683333});
+CREATE (c:CITY {name: 'Mannheim', state: 'Baden-Württemberg', country: 'Germany', longitude: 49.488889, latitude: 8.469167});
+----
+
+//console
+
+
+
