@@ -1,6 +1,6 @@
 = Neo4Art: Van Gogh's journey in a Neo4j graph DB
 
-:neo4j-version: 2.0.0-RC1
+:neo4j-version: 2.0.0
 :author: Lorenzo Speranzoni
 :twitter: @inserpio
 :tags: domain:art, use-case:van gogh's journey
@@ -262,7 +262,7 @@ RETURN artist, art_movement, city
 
 //table
 
-//graph
+=== Neo4Art - Van Gogh
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
 
@@ -369,11 +369,14 @@ Now I'm able to inquiry the system to visualize Van Gogh's journey:
 
 [source,cypher]
 ----
-MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
-WITH artist, stage, city
-MATCH (artist)-[:BELONGS_TO]->(art_movement:ART_MOVEMENT)
-RETURN artist, art_movement, stage, city
+MATCH (artist:ARTIST { last_name: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
+RETURN artist.first_name, artist.last_name, stage.from, stage.to, city.name, city.country 
+ORDER BY stage.from
 ----
+
+//table
+
+=== Neo4Art - Van Gogh's journey
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-002.png[]
 
@@ -543,8 +546,13 @@ Now I'm able to inquiry the system to know who influenced Van Gogh's artwork:
 ----
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
 OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
-RETURN artist, stage, city, influencer, art_movement
+RETURN artist.first_name, artist.last_name, stage.from, stage.to, city.name, city.country, influencer.first_name, influencer.last_name, art_movement.name
+ORDER BY stage.from
 ----
+
+//table
+
+=== Neo4Art - 3. Van Gogh’s influencers
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-003.png[]
 
@@ -693,8 +701,13 @@ Now I'm able to inquiry the system to know when and where Van Gogh painted his a
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
 WITH artist, stage, artwork, visual_art
 MATCH (stage)-[:IN]->(city:CITY)
-RETURN artist, stage, city, artwork, visual_art
+RETURN artist.first_name, artist.last_name, stage.from, stage.to, city.name, city.country, artwork.title, visual_art.name
+ORDER BY stage.from, artwork.jh_order
 ----
+
+//table
+
+=== Neo4Art - 4. Van Gogh’s artworks
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
 
@@ -796,8 +809,13 @@ Now I'm able to ask the system which Van Gogh's artworks are in dutch museums:
 [source,cypher]
 ----
 MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(city:CITY {country: 'Netherlands'})
-RETURN artwork, museum, city
+RETURN museum.name, city.name, city.country, artwork.title
+ORDER BY city.country, city.name, museum.name, artwork.title
 ----
+
+//table
+
+=== Neo4Art - 5. museums hosting Van Gogh’s artworks
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 
@@ -885,9 +903,13 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 [source,cypher]
 ----
 MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
-WITH person, city
-MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
-RETURN person, city, likes_or_posted, something_he_or_she_likes
+OPTIONAL MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
+RETURN person.firs_name, person.last_name, city.name, city.country, likes_or_posted, something_he_or_she_likes
+ORDER BY city.name, person.last_name
 ----
+
+//table
+
+=== Neo4Art - 6. likes and photos
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
