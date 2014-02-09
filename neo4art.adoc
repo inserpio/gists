@@ -187,10 +187,6 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340481073/' }]->(auvers_sur_oise)
 ----
 
-//console
-
-//graph
-
 == I. Preface 
 
 Vincent Van Gogh is widely considered one of the most important neo-impressionist painters.
@@ -911,3 +907,7 @@ ORDER BY city.name, p.last_name
 *Neo4Art - Picture 6. likes and photos*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
+
+//console
+
+//graph
