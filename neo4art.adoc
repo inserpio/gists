@@ -263,7 +263,7 @@ Which artistic movements does Van Gogh belong to?
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})
-RETURN artist.first_name, artist.last_name, art_movement.name
+RETURN artist.first_name + ' ' artist.last_name as artist, art_movement.name as art_movement
 ----
 
 //table
@@ -376,7 +376,7 @@ Now I'm able to inquiry the system to visualize Van Gogh's journey:
 [source,cypher]
 ----
 MATCH (artist:ARTIST { last_name: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
-RETURN artist.first_name, artist.last_name, stage.from, stage.to, city.name, city.country 
+RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country 
 ORDER BY stage.from
 ----
 
@@ -552,7 +552,7 @@ Now I'm able to inquiry the system to know who influenced Van Gogh's artwork:
 ----
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
 OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
-RETURN artist.first_name, artist.last_name, stage.from, stage.to, city.name, city.country, influencer.first_name, influencer.last_name, collect(art_movement.name)
+RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country, influencer.first_name + ' ' + influencer.last_name, collect(art_movement.name) as art_movements
 ORDER BY stage.from
 ----
 
@@ -707,7 +707,7 @@ Now I'm able to inquiry the system to know when and where Van Gogh painted his a
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
 WITH artist, stage, artwork, visual_art
 MATCH (stage)-[:IN]->(city:CITY)
-RETURN artist.first_name, artist.last_name, stage.from, stage.to, city.name, city.country, artwork.title, visual_art.name
+RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country, artwork.title, visual_art.name
 ORDER BY stage.from, artwork.jh_order
 ----
 
@@ -910,7 +910,7 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 OPTIONAL MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
-RETURN person.first_name, person.last_name, city.name, city.country, type(likes_or_posted), likes_or_posted.url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
+RETURN person.first_name + ' ' + person.last_name as person, city.name, city.country, type(likes_or_posted) as likes_or_posted, likes_or_posted.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
 ORDER BY city.name, person.last_name
 ----
 
