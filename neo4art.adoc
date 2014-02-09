@@ -6,6 +6,21 @@
 :tags: domain:art, use-case:van gogh's journey
 
 
+
+
+
+== I. Preface 
+
+Vincent Van Gogh is widely considered one of the most important neo-impressionist painters.
+
+One fundamental aspect of his artwork was his continuous research for colours: "_during his early adulthood, while living between The Netherlands and Belgium, his palette consisted mainly of somber earth tones and showed no sign of the vivid coloration that distinguished his later work. In March 1886, he moved to Paris and discovered the French Impressionists. Later, he moved to the south of France and was influenced by the strong sunlight he found there. His work grew brighter in color, and he developed the unique and highly recognizable style that became fully realized during his stay in Arles in 1888_"
+
+So how would I go about putting Van Gogh's journey into Neo4j?
+
+
+
+== II. Setup + Gist Console
+
 //hide
 //setup
 [source,cypher]
@@ -200,20 +215,7 @@ CREATE (destroyed_by_fire_n_1967:STATUS {name: 'Destroyed', how: 'By fire', when
 
 //graph
 
-
-== I. Preface 
-
-Vincent Van Gogh is widely considered one of the most important neo-impressionist painters.
-
-One fundamental aspect of his artwork was his continuous research for colours: "_during his early adulthood, while living between The Netherlands and Belgium, his palette consisted mainly of somber earth tones and showed no sign of the vivid coloration that distinguished his later work. In March 1886, he moved to Paris and discovered the French Impressionists. Later, he moved to the south of France and was influenced by the strong sunlight he found there. His work grew brighter in color, and he developed the unique and highly recognizable style that became fully realized during his stay in Arles in 1888_"
-
-So how would I go about putting Van Gogh's journey into Neo4j?
-
-
-
-
-
-== II. Introduction
+== III. Introduction
 
 First, I started with the data source: The http://www.vggallery.com/[*Vincent Van Gogh Gallery*] has a complete list of his paintings.
 
@@ -256,13 +258,23 @@ Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone
 
 [source,cypher]
 ----
-MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
-RETURN artist, art_movement, city
+MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
+RETURN artist.first_name, artist.last_name, r, city.name, city.country
 ----
 
 //table
 
-=== Neo4Art - Van Gogh
+Which artistic movements belongs Van Gogh?
+
+[source,cypher]
+----
+MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})
+RETURN artist.first_name, artist.last_name, art_movement.name
+----
+
+//table
+
+*Neo4Art - Picture 1. Van Gogh*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
 
@@ -376,7 +388,7 @@ ORDER BY stage.from
 
 //table
 
-=== Neo4Art - Van Gogh's journey
+*Neo4Art - Picture 2. Van Gogh's journey*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-002.png[]
 
@@ -552,7 +564,7 @@ ORDER BY stage.from
 
 //table
 
-=== Neo4Art - 3. Van Gogh’s influencers
+*Neo4Art - Picture 3. Van Gogh’s influencers*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-003.png[]
 
@@ -707,7 +719,7 @@ ORDER BY stage.from, artwork.jh_order
 
 //table
 
-=== Neo4Art - 4. Van Gogh’s artworks
+=== Neo4Art - Picture 4. Van Gogh’s artworks
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
 
@@ -815,7 +827,7 @@ ORDER BY city.country, city.name, museum.name, artwork.title
 
 //table
 
-=== Neo4Art - 5. museums hosting Van Gogh’s artworks
+=== Neo4Art - Picture 5. museums hosting Van Gogh’s artworks
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 
@@ -910,6 +922,6 @@ ORDER BY city.name, person.last_name
 
 //table
 
-=== Neo4Art - 6. likes and photos
+=== Neo4Art - Picture 6. likes and photos
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
