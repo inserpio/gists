@@ -5,6 +5,126 @@
 :twitter: @inserpio
 :tags: domain:art, use-case:van gogh's journey
 
+
+//hide
+//setup
+//output
+[source,cypher]
+----
+CREATE (van_gogh:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
+
+
+CREATE (zundert:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667})
+CREATE (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175})
+CREATE (neuen:CITY {name: 'Neuen', province: 'North Brabant', country: 'Netherland', latitude: 51.473333, longitude: 5.546667})
+CREATE (antwerp:CITY {name: 'Antwerp', province: 'Antwerp', country: 'Belgium', longitude: 51.216667, latitude: 4.4})
+CREATE (paris:CITY {name: 'Paris', country: 'France', longitude: 48.8567, latitude: 2.3508})
+CREATE (arles:CITY {name: 'Arles', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.6767, longitude: 4.6278})
+CREATE (saint_rémy_de_provence:CITY {name: 'Saint-Rémy-de-Provence', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.79, longitude: 4.8325})
+CREATE (siegen:CITY {name: 'Siegen', region: 'Arnsberg', state:'North Rhine-Westphalia', country: 'Germany', latitude: 50.883333, longitude: 8.016667});
+CREATE (painting:VISUAL_ART {name: 'painting', wikipedia: 'http://en.wikipedia.org/wiki/Visual_arts#Painting'})
+CREATE (albi:CITY {name: 'Albi', country: 'France', latitude: 50.883333, longitude: 8.016667})
+CREATE (château_malromé:CITY {name: 'Château Malromé', country: 'France', latitude: 50.883333, longitude: 8.016667})
+
+
+CREATE (post_impressionism:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
+CREATE (baroque:ART_MOVEMENT {name: 'Baroque', wikipedia: 'http://en.wikipedia.org/wiki/Baroque'})
+CREATE (art_nouveau:ART_MOVEMENT {name: 'Art Nouveau', wikipedia: 'http://en.wikipedia.org/wiki/Art_Nouveau'})
+CREATE (impressionism:ART_MOVEMENT {name: 'Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Impressionism'})
+CREATE (neo_impressionism:ART_MOVEMENT {name: 'Neo-impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Neo-impressionism'})
+CREATE (pointillism:ART_MOVEMENT {name: 'Pointillism', wikipedia: 'http://en.wikipedia.org/wiki/Pointillism'})
+
+CREATE (van_gogh)-[:BORN_IN]->(zundert)
+CREATE (van_gogh)-[:DIED_IN]->(auvers_sur_oise)
+CREATE (van_gogh)-[:BELONGS_TO]->(post_impressionism
+
+//
+// Stages
+// 
+
+CREATE (van_gogh)-[:MOVED_TO]->(neuen_stage:STAGE {from: 188312, to: 188511})
+CREATE (neuen_stage)-[:IN]->(neuen)
+
+CREATE (neuen_stage)-[:MOVED_TO]->(antwerp_stage:STAGE {from: 188512, to: 188602})
+CREATE (antwerp_stage)-[:IN]->(antwerp)
+
+CREATE (antwerp_stage)-[:MOVED_TO]->(paris_stage:STAGE {from: 188603, to: 188802 })
+CREATE (paris_stage)-[:IN]->(paris)
+
+CREATE (paris_stage)-[:MOVED_TO]->(arles_stage:STAGE {from: 188802, to: 188905 })
+CREATE (arles_stage)-[:IN]->(arles)
+
+CREATE (arles_stage)-[:MOVED_TO]->(saint_rémy_de_provence_stage:STAGE {from: 188905, to: 189005 })
+CREATE (saint_rémy_de_provence_stage)-[:IN]->(saint_rémy_de_provence)
+
+CREATE (saint_rémy_de_provence_stage)-[:MOVED_TO]->(auvers_sur_oise_stage:STAGE {from: 189005, to: 189007 })
+CREATE (auvers_sur_oise_stage)-[:IN]->(auvers_sur_oise)
+
+//
+// Influencers
+//
+
+CREATE (rubens:ARTIST {first_name: 'Peter', second_name: 'Paul', last_name: 'Rubens', born: 15770628, died: 16400530})
+CREATE (rubens)-[:BORN_IN]->(siegen)
+CREATE (rubens)-[:DIED_IN]->(siegen)
+CREATE (rubens)-[:BELONGS_TO]->(baroque)
+CREATE (antwerp_stage)-[:WHERE_WAS_INFLUENCED_BY]->(rubens)
+
+
+CREATE (toulouse_lautrec:ARTIST {first_name: 'Henri', second_name: 'Marie', third_name: 'Raymond', last_name: 'Toulouse-Lautrec', born: 18641124, died: 19010909})
+CREATE (toulouse_lautrec)-[:BORN_IN]->(albi)
+CREATE (toulouse_lautrec)-[:DIED_IN]->(château_malromé)
+CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(toulouse_lautrec)
+CREATE (toulouse_lautrec)-[:BELONGS_TO]->(post_impressionism)
+CREATE (toulouse_lautrec)-[:BELONGS_TO]->(art_nouveau)
+
+
+CREATE (gaugin:ARTIST {first_name: 'Eugène', second_name: 'Henri', third_name: 'Paul', last_name: 'Gauguin', born: 18480711, died: 19030508})
+CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(gaugin)
+CREATE (gaugin)-[:BELONGS_TO]->(post_impressionism)
+
+
+CREATE (bernard:ARTIST {first_name: 'Émile', second_name: 'Henri', last_name: 'Bernard', born: 18680428, died: 19410416})
+CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(bernard)
+CREATE (bernard)-[:BELONGS_TO]->(post-impressionism)
+
+
+CREATE (pissarro:ARTIST {first_name: 'Camille', last_name: 'Pissarro', born: 18300710, died: 19031113})
+CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(pissarro)
+CREATE (pissarro)-[:BELONGS_TO]->(post-impressionism)
+CREATE (pissarro)-[:BELONGS_TO]->(impressionism)
+
+
+CREATE (seurat:ARTIST {first_name: 'Georges-Pierre', last_name: 'Seurat', born: 18591202, died: 18910329})
+CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(seurat)
+CREATE (seurat)-[:BELONGS_TO]->(neo_impressionism)
+CREATE (seurat)-[:BELONGS_TO]->(pointillism)
+CREATE (seurat)-[:BELONGS_TO]->(post_impressionism)
+
+
+CREATE (monet:ARTIST {first_name: 'Oscar-Claude', last_name: 'Monet', born: 18401114, died: 19260526})
+CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(monet)
+CREATE (monet)-[:BELONGS_TO]->(impressionism)
+
+
+CREATE (boch:ARTIST {first_name: 'Eugène', last_name: 'Boch', born: 18550901, died: 19410103})
+CREATE (arles_stage)-[:WHERE_WAS_INFLUENCED_BY]->(boch)
+
+
+//
+// Other nodes
+//
+
+
+CREATE (location_unknown:STATUS {name: 'Location unknown'});
+CREATE (destroyed_during_ii_world_war:STATUS {name: 'Destroyed', how: 'By fire', when: 'During 2nd World War'});
+CREATE (destroyed_by_fire_n_1967:STATUS {name: 'Destroyed', how: 'By fire', when: 1967});
+----
+
+//console
+
+
+
 == I. Preface 
 
 Vincent Van Gogh is widely considered one of the most important neo-impressionist painters.
@@ -685,16 +805,3 @@ RETURN person, city, likes_or_posted, something_he_or_she_likes
 ----
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
-
-
-//hide
-//setup
-//output
-[source,cypher]
-----
-----
-
-//console
-
-
-
