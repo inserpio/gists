@@ -198,7 +198,6 @@ CREATE (destroyed_by_fire_n_1967:STATUS {name: 'Destroyed', how: 'By fire', when
 
 //console
 
-//graph
 
 
 == I. Preface 
@@ -259,8 +258,6 @@ Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, art_movement, city
 ----
-
-//table
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
 
@@ -372,8 +369,6 @@ WITH artist, stage, city
 MATCH (artist)-[:BELONGS_TO]->(art_movement:ART_MOVEMENT)
 RETURN artist, art_movement, stage, city
 ----
-
-//table
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-002.png[]
 
@@ -546,8 +541,6 @@ OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONG
 RETURN artist, stage, city, influencer, art_movement
 ----
 
-//table
-
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-003.png[]
 
 
@@ -698,8 +691,6 @@ MATCH (stage)-[:IN]->(city:CITY)
 RETURN artist, stage, city, artwork, visual_art
 ----
 
-//table
-
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
 
 
@@ -803,8 +794,6 @@ MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(ci
 RETURN artwork, museum, city
 ----
 
-//table
-
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 
 
@@ -896,7 +885,4 @@ MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
 RETURN person, city, likes_or_posted, something_he_or_she_likes
 ----
 
-//table
-
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
-
