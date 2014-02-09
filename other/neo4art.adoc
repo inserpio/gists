@@ -27,8 +27,6 @@ The root node is of course Vincent Van Gogh himself:
 ----
 CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
 
-CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE
-
 MATCH (a:ARTIST {last_name: 'Van Gogh'})
 CREATE (a)-[:BORN_IN]->(c:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667})
 
