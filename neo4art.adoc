@@ -35,7 +35,7 @@ CREATE (pointillism:ART_MOVEMENT {name: 'Pointillism', wikipedia: 'http://en.wik
 
 CREATE (van_gogh)-[:BORN_IN]->(zundert)
 CREATE (van_gogh)-[:DIED_IN]->(auvers_sur_oise)
-CREATE (van_gogh)-[:BELONGS_TO]->(post_impressionism
+CREATE (van_gogh)-[:BELONGS_TO]->(post_impressionism)
 
 //
 // Stages
