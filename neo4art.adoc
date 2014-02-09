@@ -23,6 +23,9 @@ CREATE (saint_remy_de_provence:CITY {name: 'Saint-Rémy-de-Provence', region: 'P
 CREATE (siegen:CITY {name: 'Siegen', region: 'Arnsberg', state:'North Rhine-Westphalia', country: 'Germany', latitude: 50.883333, longitude: 8.016667})
 CREATE (albi:CITY {name: 'Albi', country: 'France', latitude: 50.883333, longitude: 8.016667})
 CREATE (chateau_malrome:CITY {name: 'Château Malromé', country: 'France', latitude: 50.883333, longitude: 8.016667})
+CREATE (amsterdam:CITY {name: 'Amsterdam', province: 'North Holland', country: 'Netherlands', longitude: 52.373056, latitude: 4.892222})
+CREATE (otterlo:CITY {name: 'Otterlo', province: 'Gelderland', country: 'Netherlands', longitude: 52.1, latitude: 5.783333})
+CREATE (new_york:CITY {name: 'New York', county: ['Bronx', 'Kings', 'New York', 'Queens', 'Richmond'], state: 'New York', country: 'United States of America', longitude: 40.67, latitude: -73.94})
 
 CREATE (painting:VISUAL_ART {name: 'painting', wikipedia: 'http://en.wikipedia.org/wiki/Visual_arts#Painting'})
 
@@ -103,6 +106,89 @@ CREATE (boch:ARTIST {first_name: 'Eugène', last_name: 'Boch', born: 18550901, d
 CREATE (arles_stage)-[:WHERE_WAS_INFLUENCED_BY]->(boch)
 
 //
+// Artworks
+//
+
+CREATE (the_potato_eaters_i:ARTWORK {title: 'The Potato Eaters I', type: 'oil on canvas', year: 1885, month: 'April', thumbnail: 'http://www.vggallery.com/painting/f_0082.jpg', f_order: '82', jh_order: '764'})
+CREATE (the_potato_eaters_i)-[:AUTHOR]->(van_gogh)
+CREATE (the_potato_eaters_i)-[:IS_A]->(painting)
+CREATE (neuen_stage)-[:WHERE_REALIZED]->(the_potato_eaters_i)
+
+CREATE (backyards_of_old_houses_in_antwerp_in_the_snow:ARTWORK {title: 'Backyards of Old Houses in Antwerp in the Snow', type: 'oil on canvas', year: 1885, month: 'December', thumbnail: 'http://www.vggallery.com/painting/f_0260.jpg', f_order: '260', jh_order: '970'})
+CREATE (backyards_of_old_houses_in_antwerp_in_the_snow)-[:AUTHOR]->(van_gogh)
+CREATE (backyards_of_old_houses_in_antwerp_in_the_snow)-[:IS_A]->(painting)
+CREATE (antwerp_stage)-[:WHERE_REALIZED]->(backyards_of_old_houses_in_antwerp_in_the_snow)
+
+CREATE (portrait_of_pere_tanguy_iii:ARTWORK {title: 'Portrait of Père Tanguy III', type: 'oil on canvas', year: 1887, period: 'Autumn', thumbnail: 'http://www.vggallery.com/painting/f_0363.jpg', f_order: '363', jh_order: '1351'})
+CREATE (portrait_of_pere_tanguy_iii)-[:AUTHOR]->(van_gogh)
+CREATE (portrait_of_pere_tanguy_iii)-[:IS_A]->(painting)
+CREATE (paris_stage)-[:WHERE_REALIZED]->(portrait_of_pere_tanguy_iii)
+
+CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Night', type: 'oil on canvas', year: 1888, month: 'September', thumbnail: 'http://www.vggallery.com/painting/f_0467.jpg', f_order: '467', jh_order: '1580'})
+CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:AUTHOR]->(van_gogh)
+CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:IS_A]->(painting)
+CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:WHERE_REALIZED]->(arles)
+
+CREATE (starry_night:ARTWORK {title: 'Starry Night', type: 'oil on canvas', year: 1889, month: 'June', thumbnail: 'http://www.vggallery.com/painting/f_0612.jpg', f_order: '612', jh_order: '1731'})
+CREATE (starry_night)-[:AUTHOR]->(van_gogh)
+CREATE (starry_night)-[:IS_A]->(painting)
+CREATE (saint_remy_de_provence)-[:WHERE_REALIZED]->(starry_night)
+
+CREATE (wheat_field_with_crows:ARTWORK {title: 'Wheat Field with Crows', type: 'oil on canvas', year: 1890, month: 'July', thumbnail: 'http://www.vggallery.com/painting/f_0779.jpg', f_order: '779', jh_order: '2117'})
+CREATE (wheat_field_with_crows)-[:AUTHOR]->(van_gogh)
+CREATE (wheat_field_with_crows)-[:IS_A]->(painting)
+CREATE (auvers_sur_oise)-[:WHERE_REALIZED]->(wheat_field_with_crows)
+
+//
+// Museums
+//
+
+CREATE (musee_orsay:MUSEUM {name: 'Musée d\'Orsay', director: 'Serge Lemoine', address: 'Rue de Lille 75343 Paris, France', website: 'http://www.musee-orsay.fr/en/', wikipedia: 'http://en.wikipedia.org/wiki/Mus%C3%A9e_d%27Orsay', latitude: 48.86, longitude: 2.327})
+CREATE (musee_orsay)-[:LOCATED_IN]->(paris)
+
+CREATE (van_gogh_museum:MUSEUM {name: 'Van Gogh Museum', director: 'Axel Rüger', address: 'Museumplein Amsterdam, Netherlands', website: 'http://www.vangoghmuseum.nl/', wikipedia: 'http://en.wikipedia.org/wiki/Van_Gogh_Museum'})
+CREATE (van_gogh_museum)-[:LOCATED_IN]->(amsterdam)
+
+CREATE (musee_rodin:MUSEUM {name: 'Musée Rodin', address: 'Hôtel Biron, 79, rue de Varenne, 75007 Paris, France', website: 'http://www.musee-rodin.fr/', wikipedia: 'http://en.wikipedia.org/wiki/Mus%C3%A9e_Rodin', latitude: 48.855278, longitude: 2.315833})
+CREATE (musee_rodin)-[:LOCATED_IN]->(paris)
+
+CREATE (kroller_muller_museum:MUSEUM {name: 'Kröller-Müller Museum', director: 'Lisette Pelsers', website: 'http://kmm.nl', wikipedia: 'http://en.wikipedia.org/wiki/Kr%C3%B6ller-M%C3%BCller_Museum', latitude: 52.095556, longitude: 5.816944})
+CREATE (kroller_muller_museum)-[:LOCATED_IN]->(otterlo)
+
+CREATE (the_museum_of_modern_art:MUSEUM {name: 'The Museum of Modern Art', director: 'Glenn D. Lowry', address: '11 West 53rd Street New York, NY 10019', website: 'http://www.moma.org/', wikipedia: 'http://en.wikipedia.org/wiki/The_Museum_of_Modern_Art', latitude: 40.761484, longitude: -73.977664})
+CREATE (the_museum_of_modern_art)-[:LOCATED_IN]->(new_york)
+
+CREATE (the_potato_eaters_i)-[:OFFICIAL_LOCATION]->(van_gogh_museum)
+CREATE (backyards_of_old_houses_in_antwerp_in_the_snow)-[:OFFICIAL_LOCATION]->(van_gogh_museum)
+CREATE (wheat_field_with_crows)-[:OFFICIAL_LOCATION]->(van_gogh_museum)
+CREATE (portrait_of_pere_tanguy_iii)-[:OFFICIAL_LOCATION]->(musee_rodin)
+CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:OFFICIAL_LOCATION]->(kroller_muller_museum)
+CREATE (starry_night)-[:OFFICIAL_LOCATION]->(the_museum_of_modern_art)
+
+//
+// Post and Like
+//
+
+CREATE (lorenzo:PERSON {first_name: 'Lorenzo', last_name: 'Speranzoni', born: 19741120})
+
+CREATE (mestre:CITY {name: 'Mestre', province: 'Venice', region: 'Veneto', country: 'Italy'})
+
+CREATE (lorenzo)-[:LIVES_IN]->(mestre)
+
+CREATE (lorenzo)-[:LIKES]->(van_gogh)
+CREATE (lorenzo)-[:LIKES]->(the_potato_eaters)
+CREATE (lorenzo)-[:LIKES]->(musee_orsay)
+CREATE (lorenzo)-[:VISITED {date: 20130828}]->(musee_orsay)
+
+CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340140213/' }]->(musee_orsay)
+CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340129353/' }]->(musee_orsay)
+
+CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340356925/' }]->(auvers_sur_oise)
+CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340339575/' }]->(auvers_sur_oise)
+CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340350135/' }]->(auvers_sur_oise)
+CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340481073/' }]->(auvers_sur_oise)
+
+//
 // Other nodes
 //
 
@@ -168,6 +254,7 @@ CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia
 
 Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html[*Cypher*] statement to look at nodes and relations I've just created:
 
+[source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, art_movement, city
@@ -276,6 +363,7 @@ CREATE (last_stage)-[:IN]->(c)
 
 Now I'm able to inquiry the system to visualize Van Gogh's journey:
 
+[source,cypher]
 ----
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
 WITH artist, stage, city
@@ -447,6 +535,7 @@ CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 
 Now I'm able to inquiry the system to know who influenced Van Gogh's artwork:
 
+[source,cypher]
 ----
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
 OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
@@ -595,6 +684,7 @@ CREATE (s)-[:WHERE_REALIZED]->(a)
  
 Now I'm able to inquiry the system to know when and where Van Gogh painted his artworks:
 
+[source,cypher]
 ----
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
 WITH artist, stage, artwork, visual_art
@@ -699,6 +789,7 @@ _It would be interesting if the system could be able to track artworks' movement
 
 Now I'm able to ask the system which Van Gogh's artworks are in dutch museums:
 
+[source,cypher]
 ----
 MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(city:CITY {country: 'Netherlands'})
 RETURN artwork, museum, city
@@ -787,6 +878,7 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 
 … and inquiry for *LIKES* and *POSTS* from Italian people:
 
+[source,cypher]
 ----
 MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 WITH person, city
