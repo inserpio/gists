@@ -263,7 +263,7 @@ Which artistic movements does Van Gogh belong to?
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})
-RETURN artist.first_name + ' ' artist.last_name as artist, art_movement.name as art_movement
+RETURN artist.first_name + ' ' + artist.last_name as artist, art_movement.name as art_movement
 ----
 
 //table
