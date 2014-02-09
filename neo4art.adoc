@@ -8,7 +8,6 @@
 
 //hide
 //setup
-//output
 [source,cypher]
 ----
 CREATE (van_gogh:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
@@ -260,6 +259,8 @@ MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van
 RETURN artist, art_movement, city
 ----
 
+//graph
+
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
 
 We can see a graph already emerging! :)
@@ -370,6 +371,8 @@ WITH artist, stage, city
 MATCH (artist)-[:BELONGS_TO]->(art_movement:ART_MOVEMENT)
 RETURN artist, art_movement, stage, city
 ----
+
+//graph
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-002.png[]
 
@@ -542,6 +545,8 @@ OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONG
 RETURN artist, stage, city, influencer, art_movement
 ----
 
+//graph
+
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-003.png[]
 
 
@@ -692,6 +697,8 @@ MATCH (stage)-[:IN]->(city:CITY)
 RETURN artist, stage, city, artwork, visual_art
 ----
 
+//graph
+
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
 
 
@@ -795,6 +802,8 @@ MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(ci
 RETURN artwork, museum, city
 ----
 
+//graph
+
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 
 
@@ -876,7 +885,7 @@ MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (auvers_sur_oise:CITY {name: '
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340481073/' }]->(auvers_sur_oise);
 ----
 
-… and inquiry for *LIKES* and *POSTS* from Italian people:
+... and inquiry for *LIKES* and *POSTS* from Italian people:
 
 [source,cypher]
 ----
@@ -886,4 +895,7 @@ MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
 RETURN person, city, likes_or_posted, something_he_or_she_likes
 ----
 
+//graph
+
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
+
