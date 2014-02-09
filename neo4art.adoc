@@ -125,17 +125,17 @@ CREATE (paris_stage)-[:WHERE_REALIZED]->(portrait_of_pere_tanguy_iii)
 CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Night', type: 'oil on canvas', year: 1888, month: 'September', thumbnail: 'http://www.vggallery.com/painting/f_0467.jpg', f_order: '467', jh_order: '1580'})
 CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:AUTHOR]->(van_gogh)
 CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:IS_A]->(painting)
-CREATE (the_cafe_terrace_on_the_place_du_forum_arles_at_night)-[:WHERE_REALIZED]->(arles)
+CREATE (arles_stage)-[:WHERE_REALIZED]->(the_cafe_terrace_on_the_place_du_forum_arles_at_night)
 
 CREATE (starry_night:ARTWORK {title: 'Starry Night', type: 'oil on canvas', year: 1889, month: 'June', thumbnail: 'http://www.vggallery.com/painting/f_0612.jpg', f_order: '612', jh_order: '1731'})
 CREATE (starry_night)-[:AUTHOR]->(van_gogh)
 CREATE (starry_night)-[:IS_A]->(painting)
-CREATE (saint_remy_de_provence)-[:WHERE_REALIZED]->(starry_night)
+CREATE (saint_remy_de_provence_stage)-[:WHERE_REALIZED]->(starry_night)
 
 CREATE (wheat_field_with_crows:ARTWORK {title: 'Wheat Field with Crows', type: 'oil on canvas', year: 1890, month: 'July', thumbnail: 'http://www.vggallery.com/painting/f_0779.jpg', f_order: '779', jh_order: '2117'})
 CREATE (wheat_field_with_crows)-[:AUTHOR]->(van_gogh)
 CREATE (wheat_field_with_crows)-[:IS_A]->(painting)
-CREATE (auvers_sur_oise)-[:WHERE_REALIZED]->(wheat_field_with_crows)
+CREATE (auvers_sur_oise_stage)-[:WHERE_REALIZED]->(wheat_field_with_crows)
 
 //
 // Museums
@@ -910,7 +910,7 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 OPTIONAL MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
-RETURN person.firs_name, person.last_name, city.name, city.country, type(likes_or_posted), likes_or_posted.url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
+RETURN person.first_name, person.last_name, city.name, city.country, type(likes_or_posted), likes_or_posted.url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
 ORDER BY city.name, person.last_name
 ----
 
