@@ -174,7 +174,7 @@ CREATE (mestre:CITY {name: 'Mestre', province: 'Venice', region: 'Veneto', count
 CREATE (lorenzo)-[:LIVES_IN]->(mestre)
 
 CREATE (lorenzo)-[:LIKES]->(van_gogh)
-CREATE (lorenzo)-[:LIKES]->(the_potato_eaters)
+CREATE (lorenzo)-[:LIKES]->(the_potato_eaters_i)
 CREATE (lorenzo)-[:LIKES]->(musee_orsay)
 CREATE (lorenzo)-[:VISITED {date: 20130828}]->(musee_orsay)
 
@@ -910,12 +910,12 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 OPTIONAL MATCH (person)-[likes_or_posted:LIKES|POSTED]->(something_he_or_she_likes)
-RETURN person.firs_name, person.last_name, city.name, city.country, likes_or_posted, something_he_or_she_likes
+RETURN person.firs_name, person.last_name, city.name, city.country, type(likes_or_posted), likes_or_posted.url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
 ORDER BY city.name, person.last_name
 ----
 
 //table
 
-=== Neo4Art - Picture 6. likes and photos
+*Neo4Art - Picture 6. likes and photos*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
