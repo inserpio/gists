@@ -425,7 +425,7 @@ MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
-During his stage in *Antwerp*, among others, he depicted _*Backyards of Old Houses in Antwerp in the Snow*_:
+During his stage in *Antwerp*, among others, he depicted *_Backyards of Old Houses in Antwerp in the Snow_*:
 
 [source,cypher]
 ----
@@ -450,7 +450,7 @@ MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
-"_During his stay in Paris, he collected more Japanese ukiyo-e woodblock prints; he became interested in such works, when in 1885 in Antwerp he used them to decorate the walls of his studio. He collected hundreds of prints, which are visible in the backgrounds of several of his paintings. In his 1887 Portrait of Père Tanguy several can be seen hanging on the wall behind the main figure_":
+"_During his stay in Paris, he collected more Japanese ukiyo-e woodblock prints; he became interested in such works, when in 1885 in Antwerp he used them to decorate the walls of his studio. He collected hundreds of prints, which are visible in the backgrounds of several of his paintings. In his 1887 *Portrait of Père Tanguy* several can be seen hanging on the wall behind the main figure_":
 
 [source,cypher]
 ----
@@ -500,7 +500,7 @@ MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
-In *Saint-Rémy de Provence*, Van Gogh painted _*Starry Night*_:
+In *Saint-Rémy de Provence*, Van Gogh painted *_Starry Night_*:
 
 [source,cypher]
 ----
@@ -525,12 +525,12 @@ MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
-In *Auvers-sur-Oise*, _*Van Gogh painted Wheat Field with Crows*_:
+In *Auvers-sur-Oise*, *_Van Gogh painted Wheat Field with Crows_*:
 
 [source,cypher]
 ----
 CREATE (a:ARTWORK {title: 'Wheat Field with Crows', type: 'oil on canvas', year: 1890, month: 'July', thumbnail: 'http://www.vggallery.com/painting/f_0779.jpg', f_order: '779', jh_order: '2117'})
------
+----
 
 [source,cypher]
 ----
