@@ -1,12 +1,3 @@
-= Neo4Art: Van Gogh's journey in a Neo4j graph DB
-
-:neo4j-version: 2.0.0
-:author: Lorenzo Speranzoni
-:twitter: @inserpio
-:tags: domain:art, use-case:van gogh's journey
-
-//hide
-//setup
 [source,cypher]
 ----
 CREATE (van_gogh:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
@@ -20,5 +11,4 @@ CREATE (van_gogh)-[:BORN_IN]->(zundert)
 CREATE (van_gogh)-[:DIED_IN]->(auvers_sur_oise)
 CREATE (van_gogh)-[:BELONGS_TO]->(post_impressionism)
 ----
-
 //graph
