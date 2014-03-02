@@ -10,5 +10,7 @@ CREATE (post_impressionism:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 
 CREATE (van_gogh)-[:BORN_IN]->(zundert)
 CREATE (van_gogh)-[:DIED_IN]->(auvers_sur_oise)
 CREATE (van_gogh)-[:BELONGS_TO]->(post_impressionism)
+
+MATCH (n)-[r]-(m) RETURN n, r, m
 ----
 //graph
