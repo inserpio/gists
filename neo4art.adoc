@@ -1,6 +1,6 @@
 = Neo4Art: Van Gogh's journey in a Neo4j graph DB
 
-:neo4j-version: 2.0.0
+:neo4j-version: 2.1
 :author: Lorenzo Speranzoni
 :twitter: @inserpio
 :tags: domain:art, use-case:van gogh's journey
