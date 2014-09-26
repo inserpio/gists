@@ -961,8 +961,7 @@ ORDER BY city.name, p.lastname
 == X. NOTES ABOUT THE AUTHOR
 
 My name is http://it.linkedin.com/in/lorenzosperanzoni[*Lorenzo Speranzoni*], I'm a pragmatic and passionate IT expert with 16+ years experience both as Developer and IT Architect and as Project Leader.
-My specialties are agile and lean software management and designing software architectures.
-I aim to continuously improve my knowledge and I'm used to evaluating the latest technologies and helping teams to adopt them.
+My specialties are agile software development and designing software architectures. I love helping teams to adopt the latest open-source technologies to build their applications. 
 
 I'm a Neo4j “evangelist” and I actively contributes to the development of some open-source project part of the http://spring.io/[*Spring*] platform.
 I tweet often https://twitter.com/inserpio[*@inserpio*] and my blog is *http://inserpio.wordpress.com/[]*
