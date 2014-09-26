@@ -401,8 +401,7 @@ ORDER BY stage.from
 
 In describing his journey, there's another fundamental aspect about Van Gogh's artwork: his influencers.
 
-"_During his 2nd stage in Antwerp he applied himself to the study of colour theory and spent time in museums, particularly studying the work of Peter Paul Rubens,
-gaining encouragement to broaden his palette to carmine, cobalt and emerald green_"
+"_During his 2nd stage in Antwerp he applied himself to the study of colour theory and spent time in museums, particularly studying the work of Peter Paul Rubens, gaining encouragement to broaden his palette to carmine, cobalt and emerald green_"
 
 http://en.wikipedia.org/wiki/Peter_Paul_Rubens[*Peter Paul Rubens*]:
 
