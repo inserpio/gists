@@ -9,7 +9,7 @@
 //setup
 [source,cypher]
 ----
-CREATE (van_gogh:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
+CREATE (van_gogh:ARTIST {firstname: 'Vincent', secondname: 'Willem', lastname: 'Van Gogh', born: 18530330, died: 18900729})
 
 CREATE (zundert:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667})
 CREATE (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175})
@@ -64,43 +64,43 @@ CREATE (auvers_sur_oise_stage)-[:IN]->(auvers_sur_oise)
 // Influencers
 //
 
-CREATE (rubens:ARTIST {first_name: 'Peter', second_name: 'Paul', last_name: 'Rubens', born: 15770628, died: 16400530})
+CREATE (rubens:ARTIST {firstname: 'Peter', secondname: 'Paul', lastname: 'Rubens', born: 15770628, died: 16400530})
 CREATE (rubens)-[:BORN_IN]->(siegen)
 CREATE (rubens)-[:DIED_IN]->(siegen)
 CREATE (rubens)-[:BELONGS_TO]->(baroque)
 CREATE (antwerp_stage)-[:WHERE_WAS_INFLUENCED_BY]->(rubens)
 
-CREATE (toulouse_lautrec:ARTIST {first_name: 'Henri', second_name: 'Marie', third_name: 'Raymond', last_name: 'Toulouse-Lautrec', born: 18641124, died: 19010909})
+CREATE (toulouse_lautrec:ARTIST {firstname: 'Henri', secondname: 'Marie', third_name: 'Raymond', lastname: 'Toulouse-Lautrec', born: 18641124, died: 19010909})
 CREATE (toulouse_lautrec)-[:BORN_IN]->(albi)
 CREATE (toulouse_lautrec)-[:DIED_IN]->(chateau_malrome)
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(toulouse_lautrec)
 CREATE (toulouse_lautrec)-[:BELONGS_TO]->(post_impressionism)
 CREATE (toulouse_lautrec)-[:BELONGS_TO]->(art_nouveau)
 
-CREATE (gaugin:ARTIST {first_name: 'Eugène', second_name: 'Henri', third_name: 'Paul', last_name: 'Gauguin', born: 18480711, died: 19030508})
+CREATE (gaugin:ARTIST {firstname: 'Eugène', secondname: 'Henri', third_name: 'Paul', lastname: 'Gauguin', born: 18480711, died: 19030508})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(gaugin)
 CREATE (gaugin)-[:BELONGS_TO]->(post_impressionism)
 
-CREATE (bernard:ARTIST {first_name: 'Émile', second_name: 'Henri', last_name: 'Bernard', born: 18680428, died: 19410416})
+CREATE (bernard:ARTIST {firstname: 'Émile', secondname: 'Henri', lastname: 'Bernard', born: 18680428, died: 19410416})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(bernard)
 CREATE (bernard)-[:BELONGS_TO]->(post_impressionism)
 
-CREATE (pissarro:ARTIST {first_name: 'Camille', last_name: 'Pissarro', born: 18300710, died: 19031113})
+CREATE (pissarro:ARTIST {firstname: 'Camille', lastname: 'Pissarro', born: 18300710, died: 19031113})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(pissarro)
 CREATE (pissarro)-[:BELONGS_TO]->(post_impressionism)
 CREATE (pissarro)-[:BELONGS_TO]->(impressionism)
 
-CREATE (seurat:ARTIST {first_name: 'Georges-Pierre', last_name: 'Seurat', born: 18591202, died: 18910329})
+CREATE (seurat:ARTIST {firstname: 'Georges-Pierre', lastname: 'Seurat', born: 18591202, died: 18910329})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(seurat)
 CREATE (seurat)-[:BELONGS_TO]->(neo_impressionism)
 CREATE (seurat)-[:BELONGS_TO]->(pointillism)
 CREATE (seurat)-[:BELONGS_TO]->(post_impressionism)
 
-CREATE (monet:ARTIST {first_name: 'Oscar-Claude', last_name: 'Monet', born: 18401114, died: 19260526})
+CREATE (monet:ARTIST {firstname: 'Oscar-Claude', lastname: 'Monet', born: 18401114, died: 19260526})
 CREATE (paris_stage)-[:WHERE_WAS_INFLUENCED_BY]->(monet)
 CREATE (monet)-[:BELONGS_TO]->(impressionism)
 
-CREATE (boch:ARTIST {first_name: 'Eugène', last_name: 'Boch', born: 18550901, died: 19410103})
+CREATE (boch:ARTIST {firstname: 'Eugène', lastname: 'Boch', born: 18550901, died: 19410103})
 CREATE (arles_stage)-[:WHERE_WAS_INFLUENCED_BY]->(boch)
 
 //
@@ -167,7 +167,7 @@ CREATE (starry_night)-[:OFFICIAL_LOCATION]->(the_museum_of_modern_art)
 // Post and Like
 //
 
-CREATE (lorenzo:PERSON {first_name: 'Lorenzo', last_name: 'Speranzoni', born: 19741120})
+CREATE (lorenzo:PERSON {firstname: 'Lorenzo', lastname: 'Speranzoni', born: 19741120})
 
 CREATE (mestre:CITY {name: 'Mestre', province: 'Venice', region: 'Veneto', country: 'Italy'})
 
@@ -204,24 +204,24 @@ First, I started with the data source: The http://www.vggallery.com/[*Vincent Va
 The root node is of course Vincent Van Gogh himself:
 
 ----
-CREATE (a:ARTIST {first_name: 'Vincent', second_name: 'Willem', last_name: 'Van Gogh', born: 18530330, died: 18900729})
+CREATE (a:ARTIST {firstname: 'Vincent', secondname: 'Willem', lastname: 'Van Gogh', born: 18530330, died: 18900729})
 ----
 
-Since I'll access _ARTIST_ nodes through its last_name property, I decided to introduce an unique index constraint:
+Since I'll access _ARTIST_ nodes through its lastname property, I decided to introduce an unique index constraint:
 
 ----
-CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.last_name IS UNIQUE
+CREATE CONSTRAINT ON (a:ARTIST) ASSERT a.lastname IS UNIQUE
 ----
 
 Now, I'll focus on _CITIES_ and _STAGES_. First of all, where he was born and where he died:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})
 CREATE (a)-[:BORN_IN]->(c:CITY {name: 'Zundert', province: 'North Brabant', country: 'Netherland', latitude: 51.466667, longitude: 4.666667})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})
 CREATE (a)-[:DIED_IN]->(c:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France', country: 'France', latitude: 49.0725, longitude: 2.175})
 ----
 
@@ -232,7 +232,7 @@ Please also note that I'm saving latitude and longitude informations for future 
 Vincent Van Gogh adhered to the *"Post-Impressionism"* art movement (more correctly, one of its founder):
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
 ----
 
@@ -242,7 +242,7 @@ Where was Van Gogh born and where did he died?
 
 [source,cypher]
 ----
-MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
+MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, city
 ----
 
@@ -252,7 +252,7 @@ Which artistic movements does Van Gogh belong to?
 
 [source,cypher]
 ----
-MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})
+MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {lastname: 'Van Gogh'})
 RETURN artist, art_movement
 ----
 
@@ -262,7 +262,7 @@ And combined together:
 
 [source,cypher]
 ----
-MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
+MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {lastname: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, art_movement, city
 ----
 
@@ -274,8 +274,8 @@ Which can also be represented in tabular form:
 
 [source,cypher]
 ----
-MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
-RETURN artist.first_name + " " + artist.last_name as artist, art_movement.name as movement, type(r) as artist_city, city.name as city
+MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {lastname: 'Van Gogh'})-[r]->(city:CITY)
+RETURN artist.firstname + " " + artist.lastname as artist, art_movement.name as movement, type(r) as artist_city, city.name as city
 ----
 //table
 
@@ -290,11 +290,11 @@ RETURN artist.first_name + " " + artist.last_name as artist, art_movement.name a
 On December 1883, Van Gogh began his journey by moving to *Neuen*, North Brabant, Netherlands. He lived there until November 1885:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}) CREATE (a)-[:MOVED_TO]->(s:STAGE {from: 188312, to: 188511})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}) CREATE (a)-[:MOVED_TO]->(s:STAGE {from: 188312, to: 188511})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Neuen', province: 'North Brabant', country: 'Netherland', latitude: 51.473333, longitude: 5.546667})
 ----
@@ -306,13 +306,13 @@ _I'm still a little bit undecided about creating a specific node labeled STAGE (
 In december 1885, Van Gogh moved to *Antwerp*, Belgium, where he lived until February 1886:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188512, to: 188602})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Antwerp', region: 'Flemish Region', country: 'Belgium', latitude: 51.216667, longitude: 4.4})
 ----
@@ -320,13 +320,13 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Antwerp', region: 'Flemish Region', c
 Van Gogh lived in *Paris*, France from March 1886 to February 1888:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188603, to: 188802 })
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Paris', region: 'Île-de-France', country: 'France', latitude: 48.8567, longitude: 2.3508})
 ----
@@ -334,13 +334,13 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Paris', region: 'Île-de-France', cou
 Van Gogh moved to *Arles*, France in February 1888 and stayed there until May 1889:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188802, to: 188905 })
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Arles', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.6767, longitude: 4.6278})
 ----
@@ -350,13 +350,13 @@ _(Please, pay attention to the back slash in d\'Azur)._
 Then he moved to *Saint-Rémy de Provence*, France in May 1889 and stayed there until May 1890:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 188905, to: 189005 })
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.79, longitude: 4.8325})
 ----
@@ -364,7 +364,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence', region: 'Pr
 Van Gogh ended his trip, and also his life by committing suicide, in *Auvers-sur-Oise*, France where he had lived from May to July 1890:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 189005, to: 189007 })
 ----
@@ -372,7 +372,7 @@ CREATE (last_stage)-[:MOVED_TO]->(:STAGE {from: 189005, to: 189007 })
 Auvers-sur-Oise was already created, so I'm going to change a little the usual statement:
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)
 WITH last(collect(stage)) as last_stage
 MATCH (c:CITY {name: 'Auvers-sur-Oise'})
 CREATE (last_stage)-[:IN]->(c)
@@ -382,8 +382,8 @@ Now I'm able to inquiry the system to visualize Van Gogh's journey:
 
 [source,cypher]
 ----
-MATCH (artist:ARTIST { last_name: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
-RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country 
+MATCH (artist:ARTIST { lastname: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
+RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to, city.name, city.country 
 ORDER BY stage.from
 ----
 
@@ -407,16 +407,16 @@ gaining encouragement to broaden his palette to carmine, cobalt and emerald gree
 http://en.wikipedia.org/wiki/Peter_Paul_Rubens[*Peter Paul Rubens*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Peter', second_name: 'Paul', last_name: 'Rubens', born: 15770628, died: 16400530})
+CREATE (a:ARTIST {firstname: 'Peter', secondname: 'Paul', lastname: 'Rubens', born: 15770628, died: 16400530})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Rubens'})
+MATCH (a:ARTIST {lastname: 'Rubens'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Baroque', wikipedia: 'http://en.wikipedia.org/wiki/Baroque'})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Antwerp'}), (influencer:ARTIST {last_name: 'Rubens'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Antwerp'}), (influencer:ARTIST {lastname: 'Rubens'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
@@ -427,116 +427,116 @@ CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 http://en.wikipedia.org/wiki/Henri_de_Toulouse-Lautrec[*Henri de Toulouse-Lautrec*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Henri', second_name: 'Marie', third_name: 'Raymond', last_name: 'Toulouse-Lautrec', born: 18641124, died: 19010909})
+CREATE (a:ARTIST {firstname: 'Henri', secondname: 'Marie', third_name: 'Raymond', lastname: 'Toulouse-Lautrec', born: 18641124, died: 19010909})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {last_name: 'Toulouse-Lautrec'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {lastname: 'Toulouse-Lautrec'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Toulouse-Lautrec'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
+MATCH (a:ARTIST {lastname: 'Toulouse-Lautrec'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Toulouse-Lautrec'})
+MATCH (a:ARTIST {lastname: 'Toulouse-Lautrec'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Art Nouveau', wikipedia: 'http://en.wikipedia.org/wiki/Art_Nouveau'})
 ----
 
 http://en.wikipedia.org/wiki/Paul_Gauguin[*Paul Gauguin*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Eugène', second_name: 'Henri', third_name: 'Paul', last_name: 'Gauguin', born: 18480711, died: 19030508})
+CREATE (a:ARTIST {firstname: 'Eugène', secondname: 'Henri', third_name: 'Paul', lastname: 'Gauguin', born: 18480711, died: 19030508})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {last_name: 'Gauguin'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {lastname: 'Gauguin'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Gauguin'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
+MATCH (a:ARTIST {lastname: 'Gauguin'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
 http://en.wikipedia.org/wiki/%C3%89mile_Bernard[*Émile Bernard*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Émile', second_name: 'Henri', last_name: 'Bernard', born: 18680428, died: 19410416})
+CREATE (a:ARTIST {firstname: 'Émile', secondname: 'Henri', lastname: 'Bernard', born: 18680428, died: 19410416})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {last_name: 'Bernard'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {lastname: 'Bernard'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Bernard'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
+MATCH (a:ARTIST {lastname: 'Bernard'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
 http://en.wikipedia.org/wiki/Camille_Pissarro[*Camille Pissarro*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Camille', last_name: 'Pissarro', born: 18300710, died: 19031113})
+CREATE (a:ARTIST {firstname: 'Camille', lastname: 'Pissarro', born: 18300710, died: 19031113})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {last_name: 'Pissarro'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {lastname: 'Pissarro'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Pissarro'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
+MATCH (a:ARTIST {lastname: 'Pissarro'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Pissarro'})
+MATCH (a:ARTIST {lastname: 'Pissarro'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Impressionism'})
 ----
 
 http://en.wikipedia.org/wiki/Georges_Seurat[*Georges Seurat*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Georges-Pierre', last_name: 'Seurat', born: 18591202, died: 18910329})
+CREATE (a:ARTIST {firstname: 'Georges-Pierre', lastname: 'Seurat', born: 18591202, died: 18910329})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {last_name: 'Seurat'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {lastname: 'Seurat'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Seurat'})
+MATCH (a:ARTIST {lastname: 'Seurat'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Neo-impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Neo-impressionism'})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Seurat'})
+MATCH (a:ARTIST {lastname: 'Seurat'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Pointillism', wikipedia: 'http://en.wikipedia.org/wiki/Pointillism'})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Seurat'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
+MATCH (a:ARTIST {lastname: 'Seurat'}), (m:ART_MOVEMENT {name: 'Post-Impressionism'})
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
 http://en.wikipedia.org/wiki/Claude_Monet[*Claude Monet*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Oscar-Claude', last_name: 'Monet', born: 18401114, died: 19260526})
+CREATE (a:ARTIST {firstname: 'Oscar-Claude', lastname: 'Monet', born: 18401114, died: 19260526})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {last_name: 'Monet'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (influencer:ARTIST {lastname: 'Monet'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Monet'}), (m:ART_MOVEMENT {name: 'Impressionism'})
+MATCH (a:ARTIST {lastname: 'Monet'}), (m:ART_MOVEMENT {name: 'Impressionism'})
 CREATE (a)-[:BELONGS_TO]->(m)
 ----
 
@@ -545,11 +545,11 @@ In Arles, Van Gogh was introduced to Eugène Boch, a Belgian painter who stayed 
 http://en.wikipedia.org/wiki/Eug%C3%A8ne_Boch[*Eugène Boch*]:
 
 ----
-CREATE (a:ARTIST {first_name: 'Eugène', last_name: 'Boch', born: 18550901, died: 19410103})
+CREATE (a:ARTIST {firstname: 'Eugène', lastname: 'Boch', born: 18550901, died: 19410103})
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Arles'}), (influencer:ARTIST {last_name: 'Boch'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Arles'}), (influencer:ARTIST {lastname: 'Boch'})
 CREATE (s)-[:WHERE_WAS_INFLUENCED_BY]->(influencer)
 ----
 
@@ -557,9 +557,9 @@ Now I'm able to inquiry the system to know who influenced Van Gogh's artwork:
 
 [source,cypher]
 ----
-MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
+MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
 OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
-RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country, influencer.first_name + ' ' + influencer.last_name, collect(art_movement.name) as art_movements
+RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to, city.name, city.country, influencer.firstname + ' ' + influencer.lastname, collect(art_movement.name) as art_movements
 ORDER BY stage.from
 ----
 
@@ -588,7 +588,7 @@ CREATE (a:ARTWORK {title: 'The Potato Eaters I', type: 'oil on canvas', year: 18
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}), (w:ARTWORK {title: 'The Potato Eaters I'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}), (w:ARTWORK {title: 'The Potato Eaters I'})
 CREATE (w)-[:AUTHOR]->(a)
 ----
 
@@ -598,7 +598,7 @@ CREATE (a)-[:IS_A]->(v)
 ----
 
 ----
-MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Neuen'}), (a:ARTWORK {title: 'The Potato Eaters I'})
+MATCH (:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Neuen'}), (a:ARTWORK {title: 'The Potato Eaters I'})
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
@@ -609,7 +609,7 @@ CREATE (a:ARTWORK {title: 'Backyards of Old Houses in Antwerp in the Snow', type
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}), (w:ARTWORK {title: 'Backyards of Old Houses in Antwerp in the Snow'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}), (w:ARTWORK {title: 'Backyards of Old Houses in Antwerp in the Snow'})
 CREATE (w)-[:AUTHOR]->(a)
 ----
 
@@ -619,7 +619,7 @@ CREATE (a)-[:IS_A]->(v)
 ----
 
 ----
-MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Antwerp'}), (a:ARTWORK {title: 'Backyards of Old Houses in Antwerp in the Snow'})
+MATCH (:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Antwerp'}), (a:ARTWORK {title: 'Backyards of Old Houses in Antwerp in the Snow'})
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
@@ -630,7 +630,7 @@ CREATE (a:ARTWORK {title: 'Portrait of Père Tanguy III', type: 'oil on canvas',
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}), (w:ARTWORK {title: 'Portrait of Père Tanguy III'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}), (w:ARTWORK {title: 'Portrait of Père Tanguy III'})
 CREATE (w)-[:AUTHOR]->(a)
 ----
 
@@ -640,7 +640,7 @@ CREATE (a)-[:IS_A]->(v)
 ----
 
 ----
-MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (a:ARTWORK {title: 'Portrait of Père Tanguy III'})
+MATCH (:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Paris'}), (a:ARTWORK {title: 'Portrait of Père Tanguy III'})
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
@@ -651,7 +651,7 @@ CREATE (a:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Nig
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}), (w:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Night'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}), (w:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Night'})
 CREATE (w)-[:AUTHOR]->(a)
 ----
 
@@ -661,7 +661,7 @@ CREATE (a)-[:IS_A]->(v)
 ----
 
 ----
-MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Arles'}), (a:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Night'})
+MATCH (:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Arles'}), (a:ARTWORK {title: 'The Cafe Terrace on the Place du Forum, Arles, at Night'})
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
@@ -672,7 +672,7 @@ CREATE (a:ARTWORK {title: 'Starry Night', type: 'oil on canvas', year: 1889, mon
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}), (w:ARTWORK {title: 'Starry Night'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}), (w:ARTWORK {title: 'Starry Night'})
 CREATE (w)-[:AUTHOR]->(a)
 ----
 
@@ -682,7 +682,7 @@ CREATE (a)-[:IS_A]->(v)
 ----
 
 ----
-MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence'}), (a:ARTWORK {title: 'Starry Night'})
+MATCH (:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence'}), (a:ARTWORK {title: 'Starry Night'})
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
 
@@ -693,7 +693,7 @@ CREATE (a:ARTWORK {title: 'Wheat Field with Crows', type: 'oil on canvas', year:
 ----
 
 ----
-MATCH (a:ARTIST {last_name: 'Van Gogh'}), (w:ARTWORK {title: 'Wheat Field with Crows'})
+MATCH (a:ARTIST {lastname: 'Van Gogh'}), (w:ARTWORK {title: 'Wheat Field with Crows'})
 CREATE (w)-[:AUTHOR]->(w)
 ----
 
@@ -703,7 +703,7 @@ CREATE (a)-[:IS_A]->(v)
 ----
 
 ----
-MATCH (:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Auvers-sur-Oise'}), (a:ARTWORK {title: 'Wheat Field with Crows'})
+MATCH (:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(s:STAGE)-[:IN]->(c:CITY {name: 'Auvers-sur-Oise'}), (a:ARTWORK {title: 'Wheat Field with Crows'})
 CREATE (s)-[:WHERE_REALIZED]->(a)
 ----
  
@@ -711,10 +711,10 @@ Now I'm able to inquiry the system to know when and where Van Gogh painted his a
 
 [source,cypher]
 ----
-MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
+MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
 WITH artist, stage, artwork, visual_art
 MATCH (stage)-[:IN]->(city:CITY)
-RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country, artwork.title, visual_art.name
+RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to, city.name, city.country, artwork.title, visual_art.name
 ORDER BY stage.from, artwork.jh_order
 ----
 
@@ -839,7 +839,7 @@ image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 Of course in an age of social networking, we couldn't finish this spike without some forms of *I LIKE*:
 
 ----
-CREATE (p:PERSON {first_name: 'Lorenzo', last_name: 'Speranzoni', born: 19741120})
+CREATE (p:PERSON {firstname: 'Lorenzo', lastname: 'Speranzoni', born: 19741120})
 ----
 
 ----
@@ -847,17 +847,17 @@ CREATE (c:CITY {name: 'Mestre', province: 'Venice', region: 'Veneto', country: '
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (mestre:CITY {name: 'Mestre'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (mestre:CITY {name: 'Mestre'})
 CREATE (lorenzo)-[:LIVES_IN]->(mestre)
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (van_gogh:ARTIST {last_name: 'Van Gogh'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (van_gogh:ARTIST {lastname: 'Van Gogh'})
 CREATE (lorenzo)-[:LIKES]->(van_gogh)
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (the_potato_eaters:ARTWORK {title: 'The Potato Eaters I'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (the_potato_eaters:ARTWORK {title: 'The Potato Eaters I'})
 CREATE (lorenzo)-[:LIKES]->(the_potato_eaters)
 ----
 
@@ -873,12 +873,12 @@ CREATE (m)-[:LOCATED_IN]->(c);
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (musee_orsay:MUSEUM {name: 'Musée d\'Orsay'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (musee_orsay:MUSEUM {name: 'Musée d\'Orsay'})
 CREATE (lorenzo)-[:LIKES]->(musee_orsay)
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (musee_orsay:MUSEUM {name: 'Musée d\'Orsay'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (musee_orsay:MUSEUM {name: 'Musée d\'Orsay'})
 CREATE (lorenzo)-[:VISITED {date: 20130828}]->(musee_orsay)
 ----
 
@@ -887,27 +887,27 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (musee_orsay:MUSEUM {name: 'Musée d\'Orsay'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (musee_orsay:MUSEUM {name: 'Musée d\'Orsay'})
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340129353/' }]->(musee_orsay);
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340356925/' }]->(auvers_sur_oise);
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340339575/' }]->(auvers_sur_oise);
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340350135/' }]->(auvers_sur_oise);
 ----
 
 ----
-MATCH (lorenzo:PERSON {last_name: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
+MATCH (lorenzo:PERSON {lastname: 'Speranzoni'}), (auvers_sur_oise:CITY {name: 'Auvers-sur-Oise'})
 CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/photos/inserpio/12340481073/' }]->(auvers_sur_oise);
 ----
 
@@ -917,8 +917,8 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 ----
 MATCH (p:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
 OPTIONAL MATCH (p)-[r:LIKES|POSTED|VISITED]->(something_he_or_she_likes)
-RETURN p.first_name + ' ' + p.last_name as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.last_name, something_he_or_she_likes.title) as subject
-ORDER BY city.name, p.last_name
+RETURN p.firstname + ' ' + p.lastname as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.lastname, something_he_or_she_likes.title) as subject
+ORDER BY city.name, p.lastname
 ----
 
 //table
