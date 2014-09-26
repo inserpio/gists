@@ -251,14 +251,24 @@ Which artistic movements does Van Gogh belong to?
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})
-RETURN artist.first_name + ' ' + artist.last_name as artist, art_movement.name as art_movement
+RETURN artist, art_movement
 ----
 
-//table
+//graph_result
 
 *Neo4Art - Picture 1. Van Gogh*
 
 image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
+
+[source,cypher]
+----
+MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
+RETURN artist, art_movement, city
+----
+
+//graph_result
+
+//table
 
 We can see a graph already emerging! :)
 
