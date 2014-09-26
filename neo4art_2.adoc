@@ -275,7 +275,7 @@ Which can also be represented in tabular form:
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
-RETURN artist.first_name + " " + artist.last_name as artist, art_movement.name as movement, type[r] as artist_city, city.name as city
+RETURN artist.first_name + " " + artist.last_name as artist, art_movement.name as movement, type(r) as artist_city, city.name as city
 ----
 //table
 
