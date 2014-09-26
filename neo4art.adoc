@@ -289,7 +289,9 @@ RETURN artist.firstname + " " + artist.lastname as artist, art_movement.name as 
 
 == III. JOURNEY'S STAGES
 
-On December 1883, Van Gogh began his journey by moving to *Neuen*, North Brabant, Netherlands. He lived there until November 1885:
+image::https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png[width="550",align="center",link="https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png"]
+
+On December 1883, Van Gogh began his journey by moving to *Neuen*, North Brabant, Netherlands. He lived there until November 1885.
 
 ----
 MATCH (a:ARTIST {lastname: 'Van Gogh'}) CREATE (a)-[:MOVED_TO]->(s:STAGE {from: 188312, to: 188511})
@@ -302,10 +304,6 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Neuen', province: 'North Brabant', co
 ----
 
 As you can see, I've used the aggregation function *collect* and the collection function *last*, to retrieve current last stage.
-
-_I'm still a little bit undecided about creating a specific node labeled STAGE (I could have used CITY and relations with properties between cities directly), but stages were really significant for Van Gogh, that's why, to describe his journey I've decided to create a linked list of stages (please, tell me if you think that's wrong)._
-
-image::https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png[width="550",align="center",link="https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png"]
 
 In december 1885, Van Gogh moved to *Antwerp*, Belgium, where he lived until February 1886:
 
