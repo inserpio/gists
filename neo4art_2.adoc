@@ -948,6 +948,10 @@ ORDER BY city.name, p.lastname
 //table
 
 
+== VIII. GraphGist Console
+
 //console
+
+== IX. Full Graph
 
 //graph
