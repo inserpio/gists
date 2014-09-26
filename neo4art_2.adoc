@@ -940,10 +940,10 @@ RETURN person, city, something_he_or_she_likes
 
 [source,cypher]
 ----
-MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
-OPTIONAL MATCH (person)-[r:LIKES|POSTED|VISITED]->(something_he_or_she_likes)
-RETURN person.firstname + ' ' + person.lastname as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.lastname, something_he_or_she_likes.title) as subject
-ORDER BY city.name, person.lastname
+MATCH (p:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
+OPTIONAL MATCH (p)-[r:LIKES|POSTED|VISITED]->(something_he_or_she_likes)
+RETURN p.firstname + ' ' + p.lastname as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.lastname, something_he_or_she_likes.title) as subject
+ORDER BY city.name, p.lastname
 ----
 //table
 
