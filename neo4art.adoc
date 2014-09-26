@@ -190,9 +190,9 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 == I. Preface 
 
 This graph gist "_animates_" my original blog post *http://inserpio.wordpress.com/information-technology/neo4art-van-goghs-journey/[Neo4Art – Van Gogh’s Journey in a Neo4j Graph Database]*
-and the idea of modelling the Van Gogh's journey in a neo4j graph database came to me reading the book "_Sulle Tracce di Van Gogh_" (_in the footsteps of Van Gogh_):
+and the idea of modelling the Van Gogh's journey in a neo4j graph database came to me reading the book "_Sulle Tracce di Van Gogh_" (_in the footsteps of Van Gogh_).
 
-image::https://inserpio.files.wordpress.com/2014/09/neo4j-loves-art-cover.png[width="500"]
+image::https://inserpio.files.wordpress.com/2014/09/neo4j-loves-art-cover.png[width="600",align="center"]
 
 == II. Introduction
 
