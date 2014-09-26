@@ -268,9 +268,18 @@ RETURN artist, art_movement, city
 
 //graph_result
 
+*We can see a graph already emerging! :)*
+
+Or alternatively, in tabular form:
+
+[source,cypher]
+----
+MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
+RETURN artist.first_name + " " + artist.last_name, art_movement.name, city.name
+----
 //table
 
-We can see a graph already emerging! :)
+
 
 
 
