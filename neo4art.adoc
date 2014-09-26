@@ -965,6 +965,6 @@ My specialties are agile and lean software management and designing software arc
 I aim to continuously improve my knowledge and I'm used to evaluating the latest technologies and helping teams to use them.
 
 In May 2004, I founded LARUS Business Automation, a software company based in Mestre-Venice. We're expert in designing and building custom software powered by the latest technologies.
-In 2014 we have also become http://www.larus-ba.it/en/partnerships/neo4j.html[*neo4j solution partner*]. See more on our http://www.larus-ba.it[*company site*]
+In 2014 we have also become http://www.larus-ba.it/en/partnerships/neo4j.html[*neo4j solution partner*]. See more on our http://www.larus-ba.it[*company site*].
 
-If you have any questions about this "_neo4art_" graphgist and neo4j feel free to contact me 
+If you have any questions about this "*_neo4art_*" graphgist and neo4j feel free to contact me mailto::lorenzo.speranzoni@larus-ba.it[here].
