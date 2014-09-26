@@ -964,8 +964,6 @@ My name is http://it.linkedin.com/in/lorenzosperanzoni[Lorenzo Speranzoni], I'm 
 My specialties are agile and lean software management and designing software architectures.
 I aim to continuously improve my knowledge and I'm used to evaluating the latest technologies and helping teams to use them.
 
-[%hardbreaks]
-
 In May 2004, I founded LARUS Business Automation, a software company based in Mestre-Venice.
 We're expert in designing and building custom software, powered by the latest technologies.
 In 2014 we have also become neo4j solution partner. See more on our company site: http://www.larus-ba.it[]
