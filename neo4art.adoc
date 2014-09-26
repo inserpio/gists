@@ -232,7 +232,7 @@ CREATE (a)-[:DIED_IN]->(c:CITY {name: 'Auvers-sur-Oise', region: 'Île-de-France
 
 Please note, we have a _CITY_ with a province property and the other with a region property: Neo4j is *schema-less* (or, more correctly, *"less schema"*, as Jim Webber pointed out on his http://jimwebber.org/2014/01/starting-graph-databases-with-neo4j-2-0/[*blog*]).
 
-Please also note that I'm saving latitude and longitude informations for future (maybe my next spike) geo-spatial queries: at present, I'm just supposing this is the correct way to store such kind of data.
+Please also note that I'm saving latitude and longitude informations for http://inserpio.wordpress.com/2014/09/21/neo4art-moves-to-cloud-foundry-at-springone-2gx-2014/[future] geo-spatial queries: at present, I'm just supposing this is the correct way to store such kind of data.
 
 Vincent Van Gogh adhered to the *"Post-Impressionism"* art movement (more correctly, one of its founder):
 
