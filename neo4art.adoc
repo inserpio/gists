@@ -967,6 +967,6 @@ I'm a Neo4j “evangelist” and I actively contributes to the development of so
 I tweet often https://twitter.com/inserpio[*@inserpio*] and my blog is *http://inserpio.wordpress.com/[]*
 
 In May 2004, I founded LARUS Business Automation, a software company based in Mestre-Venice. We're expert in designing and building custom software powered by the latest technologies.
-In 2014 we have also become http://www.larus-ba.it/en/partnerships/neo4j.html[*neo4j solution partner*]. See more on our company site: http://www.larus-ba.it[].
+In 2014 we have also become http://www.larus-ba.it/en/partnerships/neo4j.html[*neo4j solution partner*]. See more on our company site: *http://www.larus-ba.it*[].
 
 If you have any questions about this "*_neo4art_*" graphgist and http://www.neo4j.org[*neo4j*] feel free to contact me mailto::lorenzo.speranzoni@larus-ba.it[*here*].
