@@ -210,7 +210,7 @@ The root node is of course Vincent Van Gogh himself:
 CREATE (a:ARTIST {firstname: 'Vincent', secondname: 'Willem', lastname: 'Van Gogh', born: 18530330, died: 18900729})
 ----
 
-image::https://inserpio.files.wordpress.com/2014/09/van-gogh-self-border.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/van-gogh-self-border.png[width="350",align="center"]
 
 Since I'll access _ARTIST_ nodes through its lastname property, I decided to introduce an unique index constraint:
 
@@ -241,7 +241,7 @@ MATCH (a:ARTIST {lastname: 'Van Gogh'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
 ----
 
-image::https://inserpio.files.wordpress.com/2014/09/wheat-field-with-cypresses.jpg[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/wheat-field-with-cypresses.jpg[width="350",align="center"]
 
 Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html[*Cypher*] statement to look at nodes and relations I've just created.
 
@@ -289,7 +289,7 @@ RETURN artist.firstname + " " + artist.lastname as artist, art_movement.name as 
 
 == III. JOURNEY'S STAGES
 
-image::https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png[width="350",align="center"]
 
 On December 1883, Van Gogh began his journey by moving to *Neuen*, North Brabant, Netherlands. He lived there until November 1885:
 
@@ -408,7 +408,7 @@ ORDER BY stage.from
 
 == IV. INFLUENCERS
 
-image::https://inserpio.files.wordpress.com/2014/09/blossoming-almond-tree.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/blossoming-almond-tree.png[width="350",align="center"]
 
 In describing his journey, there's another fundamental aspect about Van Gogh's artwork: his influencers.
 
@@ -591,7 +591,7 @@ ORDER BY stage.from
 
 == V. ARTWORK
 
-image::https://inserpio.files.wordpress.com/2014/09/starry-night.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/starry-night.png[width="350",align="center"]
 
 Van Gogh's artwork is about painting:
 
@@ -752,7 +752,7 @@ ORDER BY stage.from, artwork.jh_order
 
 == VI. WHERE ARE HIS ARTWORKS?
 
-image::https://inserpio.files.wordpress.com/2014/09/still-life-with-20-sunflowers.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/still-life-with-20-sunflowers.png[width="350",align="center"]
 
 Ok, I believe it's time to get up from my chair to start admiring his paintings around the world.
 
@@ -866,7 +866,7 @@ ORDER BY city.country, city.name, museum.name, artwork.title
 
 == VII. ADD SOME SOCIAL
 
-image::https://inserpio.files.wordpress.com/2014/09/terrasse-des-cafc3a9s.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/terrasse-des-cafc3a9s.png[width="350",align="center"]
 
 Of course in an age of social networking, we couldn't finish this spike without some forms of *I LIKE*:
 
@@ -963,7 +963,7 @@ ORDER BY city.name, p.lastname
 ----
 //table
 
-image::https://inserpio.files.wordpress.com/2014/09/the-church-in-auvers-sur-oise.png[width="400",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/the-church-in-auvers-sur-oise.png[width="350",align="center"]
 
 == VIII. GRAPHGIST CONSOLE
 
@@ -986,4 +986,4 @@ In 2014 we have also become http://www.larus-ba.it/en/partnerships/neo4j.html[*n
 
 If you have any questions about this "*_neo4art_*" graphgist and http://www.neo4j.org[*neo4j*] feel free to contact me mailto::lorenzo.speranzoni@larus-ba.it[*here*].
 
-image::https://inserpio.files.wordpress.com/2014/09/wheat-field-with-crows.png[width="700",align="center"]
+image::https://inserpio.files.wordpress.com/2014/09/wheat-field-with-crows.png[width="800",align="center"]
