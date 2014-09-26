@@ -956,8 +956,6 @@ RETURN person, city, something_he_or_she_likes
 ----
 //graph_result
 
-image::https://inserpio.files.wordpress.com/2014/09/the-church-in-auvers-sur-oise.png[width="400",align="center",link="https://inserpio.files.wordpress.com/2014/09/the-church-in-auvers-sur-oise.png"]
-
 [source,cypher]
 ----
 MATCH (p:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
@@ -969,6 +967,9 @@ ORDER BY city.name, p.lastname
 
 == VIII. GRAPHGIST CONSOLE
 
++
+image::https://inserpio.files.wordpress.com/2014/09/the-church-in-auvers-sur-oise.png[width="400",align="center",link="https://inserpio.files.wordpress.com/2014/09/the-church-in-auvers-sur-oise.png"]
++
 //console
 
 == IX. FULL NEO4ART GRAPH
