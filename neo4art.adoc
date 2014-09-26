@@ -189,15 +189,15 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 
 == I. Preface 
 
+This graph gist "_animates_" my original http://inserpio.wordpress.com/information-technology/neo4art-van-goghs-journey/[blog post].
+
+== II. Introduction
+
 Vincent Van Gogh is widely considered one of the most important neo-impressionist painters.
 
 One fundamental aspect of his artwork was his continuous research for colours: "_during his early adulthood, while living between The Netherlands and Belgium, his palette consisted mainly of somber earth tones and showed no sign of the vivid coloration that distinguished his later work. In March 1886, he moved to Paris and discovered the French Impressionists. Later, he moved to the south of France and was influenced by the strong sunlight he found there. His work grew brighter in color, and he developed the unique and highly recognizable style that became fully realized during his stay in Arles in 1888_"
 
 So how would I go about putting Van Gogh's journey into Neo4j?
-
-
-
-== II. Introduction
 
 First, I started with the data source: The http://www.vggallery.com/[*Vincent Van Gogh Gallery*] has a complete list of his paintings.
 
