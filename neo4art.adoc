@@ -948,10 +948,10 @@ ORDER BY city.name, p.lastname
 //table
 
 
-== VIII. GraphGist Console
+== VIII. GRAPHGIST CONSOLE
 
 //console
 
-== IX. Full Graph
+== IX. FULL NEO4ART GRAPH
 
 //graph
