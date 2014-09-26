@@ -566,15 +566,20 @@ Now I'm able to inquiry the system to know who influenced Van Gogh's artwork:
 ----
 MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
 OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
+RETURN artist, stage, city, influencer, art_movement
+----
+
+//graph_result
+
+And in tabular form:
+
+[source,cypher]
+----
+MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
+OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
 RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to, city.name, city.country, influencer.firstname + ' ' + influencer.lastname, collect(art_movement.name) as art_movements
 ORDER BY stage.from
 ----
-
-//table
-
-*Neo4Art - Picture 3. Van Gogh’s influencers*
-
-image::http://inserpio.files.wordpress.com/2014/02/neo4art-003.png[]
 
 
 
