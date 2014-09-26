@@ -245,7 +245,6 @@ Where was Van Gogh born and where did he died?
 MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, city
 ----
-
 //graph_result
 
 Which artistic movements does Van Gogh belong to?
@@ -255,7 +254,6 @@ Which artistic movements does Van Gogh belong to?
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {lastname: 'Van Gogh'})
 RETURN artist, art_movement
 ----
-
 //graph_result
 
 And combined together:
@@ -265,12 +263,11 @@ And combined together:
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {lastname: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist, art_movement, city
 ----
-
 //graph_result
 
 *We can see a graph already emerging! :)*
 
-Which can also be represented in tabular form:
+Which can also be represented in tabular form as follow:
 
 [source,cypher]
 ----
@@ -278,8 +275,6 @@ MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {lastname: 'Van 
 RETURN artist.firstname + " " + artist.lastname as artist, art_movement.name as movement, type(r) as artist_city, city.name as city
 ----
 //table
-
-
 
 
 
@@ -386,10 +381,9 @@ Now I'm able to inquiry the system to visualize Van Gogh's journey:
 MATCH (artist:ARTIST { lastname: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
 RETURN artist, stage, city
 ----
-
 //graph_result
 
-And in tabular form:
+Similarly, in tabular form:
 
 [source,cypher]
 ----
@@ -397,7 +391,6 @@ MATCH (artist:ARTIST { lastname: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]
 RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to, city.name, city.country 
 ORDER BY stage.from
 ----
-
 //table
 
 
@@ -581,6 +574,7 @@ RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to,
 ORDER BY stage.from
 ----
 
+//table
 
 
 
@@ -726,15 +720,21 @@ Now I'm able to inquiry the system to know when and where Van Gogh painted his a
 MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
 WITH artist, stage, artwork, visual_art
 MATCH (stage)-[:IN]->(city:CITY)
+RETURN artist, stage, city, artwork, visual_art
+----
+//graph_result
+
+[source,cypher]
+----
+MATCH (artist:ARTIST {lastname: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:WHERE_REALIZED*]->(artwork:ARTWORK)-[:IS_A]-(visual_art:VISUAL_ART)
+WITH artist, stage, artwork, visual_art
+MATCH (stage)-[:IN]->(city:CITY)
 RETURN artist.firstname + ' ' + artist.lastname as artist, stage.from, stage.to, city.name, city.country, artwork.title, visual_art.name
 ORDER BY stage.from, artwork.jh_order
 ----
-
 //table
 
-*Neo4Art - Picture 4. Van Gogh’s artworks*
 
-image::http://inserpio.files.wordpress.com/2014/02/neo4art-004.png[]
 
 
 
@@ -834,15 +834,19 @@ Now I'm able to ask the system which Van Gogh's artworks are in dutch museums:
 [source,cypher]
 ----
 MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(city:CITY {country: 'Netherlands'})
+RETURN museum, city, artwork
+----
+//graph_result
+
+[source,cypher]
+----
+MATCH (artwork:ARTWORK)-[:OFFICIAL_LOCATION]->(museum:MUSEUM)-[:LOCATED_IN]->(city:CITY {country: 'Netherlands'})
 RETURN museum.name, city.name, city.country, artwork.title
 ORDER BY city.country, city.name, museum.name, artwork.title
 ----
-
 //table
 
-*Neo4Art - Picture 5. museums hosting Van Gogh’s artworks*
 
-image::http://inserpio.files.wordpress.com/2014/02/neo4art-005.png[]
 
 
 
@@ -927,17 +931,22 @@ CREATE (lorenzo)-[:POSTED {media_type: 'image', url: 'http://www.flickr.com/phot
 
 [source,cypher]
 ----
-MATCH (p:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
-OPTIONAL MATCH (p)-[r:LIKES|POSTED|VISITED]->(something_he_or_she_likes)
-RETURN p.firstname + ' ' + p.lastname as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.lastname, something_he_or_she_likes.title) as subject
-ORDER BY city.name, p.lastname
-----
+MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
+OPTIONAL MATCH (person)-[r:LIKES|POSTED|VISITED]->(something_he_or_she_likes)
+RETURN person, city, something_he_or_she_likes
 
+----
+//graph_result
+
+[source,cypher]
+----
+MATCH (person:PERSON)-[:LIVES_IN]->(city:CITY {country: 'Italy'})
+OPTIONAL MATCH (person)-[r:LIKES|POSTED|VISITED]->(something_he_or_she_likes)
+RETURN person.firstname + ' ' + person.lastname as person, city.name, city.country, type(r) as likes_or_posted, r.url as post_url, coalesce(something_he_or_she_likes.name, something_he_or_she_likes.lastname, something_he_or_she_likes.title) as subject
+ORDER BY city.name, person.lastname
+----
 //table
 
-*Neo4Art - Picture 6. likes and photos*
-
-image::http://inserpio.files.wordpress.com/2014/02/neo4art-006.png[]
 
 //console
 
