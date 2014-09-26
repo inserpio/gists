@@ -357,7 +357,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Arles', region: 'Provence-Alpes-Côte
 
 _(Please, pay attention to the back slash in d\'Azur)._
 
-http://en.wikipedia.org/wiki/Saint-R%C3%A9my-de-Provence[*Saint-Rémy de Provence*]
+http://en.wikipedia.org/wiki/Saint-R%C3%A9my-de-Provence[*Saint-Rémy de Provence*]:
 
 Then he moved to *Saint-Rémy de Provence*, France in May 1889 and stayed there until May 1890:
 
@@ -373,7 +373,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.79, longitude: 4.8325})
 ----
 
-http://en.wikipedia.org/wiki/Auvers-sur-Oise[*Auvers-sur-Oise*]
+http://en.wikipedia.org/wiki/Auvers-sur-Oise[*Auvers-sur-Oise*]:
 
 Van Gogh ended his trip, and also his life by committing suicide, in *Auvers-sur-Oise*, France where he had lived from May to July 1890:
 
