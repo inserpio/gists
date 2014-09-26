@@ -291,7 +291,7 @@ RETURN artist.firstname + " " + artist.lastname as artist, art_movement.name as 
 
 image::https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png[width="550",align="center",link="https://inserpio.files.wordpress.com/2014/09/pont-de-langlois.png"]
 
-=== Neuen
+http://en.wikipedia.org/wiki/Nuenen[*Neuen*]:
 
 On December 1883, Van Gogh began his journey by moving to *Neuen*, North Brabant, Netherlands. He lived there until November 1885.
 
@@ -307,7 +307,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Neuen', province: 'North Brabant', co
 
 As you can see, I've used the aggregation function *collect* and the collection function *last*, to retrieve current last stage.
 
-=== Antwerp
+http://en.wikipedia.org/wiki/Antwerp[*Antwerp*]:
 
 In december 1885, Van Gogh moved to *Antwerp*, Belgium, where he lived until February 1886:
 
@@ -323,7 +323,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Antwerp', region: 'Flemish Region', country: 'Belgium', latitude: 51.216667, longitude: 4.4})
 ----
 
-=== Paris
+http://en.wikipedia.org/wiki/Paris[*Paris*]:
 
 Van Gogh lived in *Paris*, France from March 1886 to February 1888:
 
@@ -339,7 +339,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Paris', region: 'Île-de-France', country: 'France', latitude: 48.8567, longitude: 2.3508})
 ----
 
-=== Arles
+http://en.wikipedia.org/wiki/Arles[*Arles*]:
 
 Van Gogh moved to *Arles*, France in February 1888 and stayed there until May 1889:
 
@@ -357,7 +357,7 @@ CREATE (last_stage)-[:IN]->(c:CITY {name: 'Arles', region: 'Provence-Alpes-Côte
 
 _(Please, pay attention to the back slash in d\'Azur)._
 
-=== Saint-Rémy de Provence
+http://en.wikipedia.org/wiki/Saint-R%C3%A9my-de-Provence[*Saint-Rémy de Provence*]
 
 Then he moved to *Saint-Rémy de Provence*, France in May 1889 and stayed there until May 1890:
 
@@ -373,7 +373,7 @@ WITH last(collect(stage)) as last_stage
 CREATE (last_stage)-[:IN]->(c:CITY {name: 'Saint-Rémy de Provence', region: 'Provence-Alpes-Côte d\'Azur', country: 'France', latitude: 43.79, longitude: 4.8325})
 ----
 
-=== Auvers-sur-Oise
+http://en.wikipedia.org/wiki/Auvers-sur-Oise[*Auvers-sur-Oise*]
 
 Van Gogh ended his trip, and also his life by committing suicide, in *Auvers-sur-Oise*, France where he had lived from May to July 1890:
 
