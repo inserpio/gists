@@ -380,6 +380,17 @@ CREATE (last_stage)-[:IN]->(c)
 
 Now I'm able to inquiry the system to visualize Van Gogh's journey:
 
+
+[source,cypher]
+----
+MATCH (artist:ARTIST { lastname: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
+RETURN artist, stage, city
+----
+
+//graph_result
+
+And in tabular form:
+
 [source,cypher]
 ----
 MATCH (artist:ARTIST { lastname: 'Van Gogh' })-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY) 
@@ -388,10 +399,6 @@ ORDER BY stage.from
 ----
 
 //table
-
-*Neo4Art - Picture 2. Van Gogh's journey*
-
-image::http://inserpio.files.wordpress.com/2014/02/neo4art-002.png[]
 
 
 
