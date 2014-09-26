@@ -243,9 +243,6 @@ Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone
 MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
 RETURN artist.first_name, artist.last_name, type(r), city.name, city.country
 ----
-
-//table
-
 //graph
 
 Which artistic movements does Van Gogh belong to?
