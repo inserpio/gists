@@ -236,7 +236,9 @@ MATCH (a:ARTIST {last_name: 'Van Gogh'})
 CREATE (a)-[:BELONGS_TO]->(m:ART_MOVEMENT {name: 'Post-Impressionism', wikipedia: 'http://en.wikipedia.org/wiki/Post-Impressionism'})
 ----
 
-Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html[*Cypher*] statement to look at nodes and relations I've just created:
+Now I could write the first, very simple http://docs.neo4j.org/chunked/milestone/cypher-query-lang.html[*Cypher*] statement to look at nodes and relations I've just created.
+
+Where was Van Gogh born and where did he died?
 
 [source,cypher]
 ----
@@ -256,9 +258,7 @@ RETURN artist, art_movement
 
 //graph_result
 
-*Neo4Art - Picture 1. Van Gogh*
-
-image::http://inserpio.files.wordpress.com/2014/02/neo4art-001.png[]
+And combined together:
 
 [source,cypher]
 ----
@@ -270,12 +270,12 @@ RETURN artist, art_movement, city
 
 *We can see a graph already emerging! :)*
 
-Or alternatively, in tabular form:
+Which can also be represented in tabular form:
 
 [source,cypher]
 ----
 MATCH (art_movement:ART_MOVEMENT)<-[:BELONGS_TO]-(artist:ARTIST {last_name: 'Van Gogh'})-[r]->(city:CITY)
-RETURN artist.first_name + " " + artist.last_name, art_movement.name, city.name
+RETURN artist.first_name + " " + artist.last_name as artist, art_movement.name as movement, type[r] as artist_city, city.name as city
 ----
 //table
 
